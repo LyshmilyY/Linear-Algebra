@@ -1,0 +1,2008 @@
+\documentclass[oneside]{book}
+\usepackage{ctex}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\title{MIT 18.06}
+\author{Lyshmily.Y}
+\date{\today}
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\newpage
+	\part{AX=B\ 和四个子空间}
+	\chapter{方程组的几何解释}
+	我们首先来看一个方程组,例如:
+	\begin{equation}\left\{
+	\begin{array}{c}
+		2x-y=0\\
+		-x+2y=4\\
+	\end{array}
+	\right.
+	\end{equation}
+	
+	我们立马有方程组系数矩阵的概念,这个矩阵包含方程组未知数的系数,那么我们可以将方程组$(1.1)$改写为下面的矩阵形式$(1.2)$
+	\begin{equation}
+	\left[
+	\begin{array}{cc}
+		2 & -1\\
+		-1 & 2 
+	\end{array}
+	\right]
+	\left[
+	\begin{array}{c}
+		x\\
+		y 
+	\end{array}
+	\right]
+	=
+	\left[
+	\begin{array}{cc}
+		0\\
+		3 
+	\end{array}
+	\right]
+	\end{equation}
+	
+	我们令$
+	\textbf{A}=
+	\left[
+	\begin{array}{cc}
+		2 & -1\\
+		-1 & 2 
+	\end{array}
+	\right]
+	$,我们称$\textbf{A}$为方程组$(1.1)$的系数矩阵,令
+	$\textbf{X}=\left[
+	\begin{array}{c}
+		x\\
+		y 
+	\end{array}
+	\right]$, $\textbf{b}=\left[
+	\begin{array}{cc}
+		0\\
+		3 
+	\end{array}
+	\right]$, 我们得到所有线性方程组的通式$\textbf{AX}=\textbf{b}$.
+	
+	我们首先使用行图像来说明线性方程组$(1.1)$,在平面直角坐标系$xoy$中,直线$l_{1}:2x-y=0$表示方程$2x-y=0$的解的集合;直线$l_{2}:-x+2y=0=0$表示方程$-x+2y=0$的解的集合;方程组的解是这两个方程组的解集的交集,说明两条直线$l_{1}、l_{2}$的交点$ (1,2) $,即$ \left\{
+	\begin{array}{c}
+		x=1\\
+		y=2\\
+	\end{array}
+	\right.$为方程组$(1.1)$的解.
+	
+	接下来我们从另外的一个角度来看待方程组$(1.1)$,我们发现方程组的矩阵$(1.2)$可以写成如下的形式：
+	\begin{equation}
+		x\left[
+		\begin{array}{c}
+			2 \\
+			-1
+		\end{array}
+		\right]
+		+
+		y\left[
+		\begin{array}{c}
+			-1\\
+			2 
+		\end{array}
+		\right]
+		=
+		\left[
+		\begin{array}{c}
+			0\\
+			3
+		\end{array}
+		\right]
+	\end{equation}
+
+	我们令向量$
+	\textbf{n}_{1}
+	=
+	\left[
+	\begin{array}{c}
+		2 \\
+		-1
+	\end{array}
+	\right]
+	$,
+	向量$
+	\textbf{n}_{2}
+	=
+	\left[
+	\begin{array}{c}
+		-1 \\
+		2
+	\end{array}
+	\right] 
+	$,
+	向量$
+	\textbf{b}
+	=
+	\left[
+	\begin{array}{c}
+		-1 \\
+		2
+	\end{array}
+	\right] 
+	$;
+	我们只需要找到合适的$x、y$,使得向量$\textbf{b}$由向量$\textbf{n}_{1}$、$\textbf{n}_{2}$的线性组合得到.
+	
+	明显的,我们发现当$ x=1,y=2 $时,向量$\textbf{n}_{1}$、$\textbf{n}_{2}$的线性组合得到向量$\textbf{b}$.
+	显然对于$ \forall x\in R,y\in R$;我们得到一个向量空间，即二维平面上的所有向量.
+	
+	我们来看另一个三元一次方程组的例子:
+	\begin{equation}
+		\left\{
+		\begin{array}{c}
+			2x-y=0\\
+			-x+2y-z=-1\\
+			-3y+4z=4
+		\end{array}
+		\right.
+	\end{equation}
+
+	我们写出这个方程组的矩阵形式,如下$(1.5) $所示.$ \textbf{AX}=\textbf{b} $,其中系数矩阵$\textbf{A}=\left[
+	\begin{array}{ccc}
+		2 & -1 & 0\\
+		-1 & 2 & -1\\
+		0 & -3 & 4
+	\end{array}
+	\right]$,$ \textbf{X}= \left[\begin{array}{c}
+		x\\
+		y\\
+		z
+	\end{array}
+	\right]
+	$,$ \textbf{b}=\left[\begin{array}{c}
+		0\\
+		-1\\
+		4
+	\end{array}
+	\right] $.
+	\begin{equation}
+		\left[
+		\begin{array}{ccc}
+			2 & -1 & 0\\
+			-1 & 2 & -1\\
+			0 & -3 & 4
+		\end{array}
+		\right]
+		\left[
+		\begin{array}{c}
+			x\\
+			y\\
+			z
+		\end{array}
+		\right]
+		=
+		\left[
+		\begin{array}{c}
+			0\\
+			-1\\
+			4
+		\end{array}
+		\right]
+	\end{equation}
+	
+	我们依然从行向量和列向量两个角度来看待这个方程组，首先是行向量的角度，我们可以理解为是在空间直角坐标系$ xoy $中,每一个方程代表一个平面,这个平面上所有的点都是方程的解,三个平面的交点就是方程组的解集.
+	
+	接下来是列向量的角度，我们发现方程组的矩阵形式$(1.5)$还可以写为如下的形式.
+	\begin{equation}
+		x\left[
+		\begin{array}{c}
+			2 \\
+			-1 \\
+			0
+		\end{array}
+		\right]
+		+
+		y\left[
+		\begin{array}{c}
+			-1\\
+			2 \\
+			-3
+		\end{array}
+		\right]
+		+
+		z\left[
+		\begin{array}{c}
+			0\\
+			-1 \\
+			4
+		\end{array}
+		\right]
+		=
+		\left[
+		\begin{array}{c}
+			0\\
+			-1\\
+			4
+		\end{array}
+		\right]
+	\end{equation}
+
+	我们令向量$
+	\textbf{n}_{1}
+	=
+	\left[
+	\begin{array}{c}
+		2 \\
+		-1\\
+		0
+	\end{array}
+	\right]
+	$,
+	向量$
+	\textbf{n}_{2}
+	=
+	\left[
+	\begin{array}{c}
+		-1 \\
+		2\\
+		-3
+	\end{array}
+	\right] 
+	$,
+	向量$
+	\textbf{n}_{3}
+	=
+	\left[
+	\begin{array}{c}
+		0\\
+		-1\\
+		4
+	\end{array}
+	\right] 
+	$,
+	向量$
+	\textbf{b}
+	=
+	\left[
+	\begin{array}{c}
+		0\\
+		-1\\
+		4
+	\end{array}
+	\right] 
+	$;
+	我们只需要找到合适的$x、y、z$,使得向量$\textbf{b}$由向量$\textbf{n}_{1}$、$\textbf{n}_{2}$、$\textbf{n}_{3}$的线性组合得到.
+	
+	我们也许可以很轻易的发现$ \left\{
+	\begin{array}{c}
+		x=0\\
+		y=0\\
+		z=1
+	\end{array}
+	\right. $是原方程组的一个解，当然这个方程组还有很多个解.我们发现列向量$\textbf{n}_{1}$、$\textbf{n}_{2}$、$\textbf{n}_{3}$的线性组合可以覆盖掉整个三维空间.换句话说就是，对于$ \forall x\in R,y\in R,z\in R$;我们得到一个向量空间，也就是三维空间内所有向量的集合.
+	
+	因此,我们提出一个问题，就是对于方程组$ \textbf{AX}=\textbf{b} $, $ \forall b\in R^{n} $,方程组是否有解？
+	这个说法等价于是否能找到列向量的线性组合满足向量$ \textbf{b} $？对于方程组$ (1.4) $，这个答案是肯定的,那么对于任意一个方程组呢？
+	
+	对于任意一个方程组，系数矩阵的列向量是否有线性组合满足右侧的向量$ \textbf{b} $决定方程组是否有解,当这些列向量线性无关时，对于任意的向量$ \textbf{b} $方程组总会有解,反之则不一定.
+	
+	\textbf{矩阵和矩阵、矩阵和向量相乘}
+	
+	首先是矩阵和向量相乘
+	$$
+		\left[
+		\begin{array}{cccc}
+			a_{11} & a_{12} & ... & a_{1n}\\
+			a_{21} & a_{22} & ... & a_{2n}\\
+			... & ... & ... & ...\\
+			a_{m1} & a_{m2} & ... & a_{mn}\\
+		\end{array}
+		\right]
+		\left[
+		\begin{array}{c}
+			b_{1}\\
+			b_{2}\\
+			...\\
+			b_{n}
+		\end{array}
+		\right]
+		=
+		b_{1}\left[
+		\begin{array}{c}
+			a_{11}\\
+			a_{21}\\
+			...\\
+			a_{m1}
+		\end{array}
+		\right]
+		+
+		b_{2}\left[
+		\begin{array}{c}
+			a_{12}\\
+			a_{22}\\
+			...\\
+			a_{m2}
+		\end{array}
+		\right]
+		...
+		+
+		b_{n}\left[
+		\begin{array}{c}
+			a_{1n}\\
+			a_{2n}\\
+			...\\
+			a_{mn}
+		\end{array}
+		\right]$$
+	表示的是矩阵列向量的线性组合,我们可以类比于方程组的列向量解读.
+	
+$$
+	\left[
+	\begin{array}{cccc}
+		a_{11} & a_{12} & ... & a_{1n}\\
+		a_{21} & a_{22} & ... & a_{2n}\\
+		... & ... & ... & ...\\
+		a_{m1} & a_{m2} & ... & a_{mn}\\
+	\end{array}
+	\right]
+	\left[
+	\begin{array}{cccc}
+		b_{11} & b_{12} & ... & b_{1q}\\
+		b_{21} & b_{22} & ... & b_{2q}\\
+		... & ... & ... &...\\
+		b_{n1} & b_{n2} & ... & b_{nq}
+	\end{array}
+	\right]
+	=
+	\left[
+	\begin{array}{cccc}
+		c_{11} & c_{12} & ... & c_{1q}\\
+		c_{21} & c_{22} & ... & c_{2q}\\
+		... & ... & ... &...\\
+		c_{m1} & c_{m2} & ... & c_{mq}
+	\end{array}
+	\right]
+	$$
+	其中$$ c_{\textbf{ij}}=\sum_{k=1}^{n}a_{\textbf{i}k}b_{k\textbf{j}} $$
+	
+	同样可以理解为矩阵和向量相乘得到，矩阵C的每一列都是矩阵B的对应列和矩阵A相乘得到,同样是列向量的线性组合.
+	\chapter{矩阵消元}
+	\textbf{用消元法求解方程式组}
+	
+	消元法是所有计算机程序求解方程组使用的方法,下面我们先来看一个例子.
+	
+	\begin{equation}
+		\left\{
+		\begin{array}{c}
+			x+2y+z=2\\
+			3x+8y+z=12\\
+			4y+z=2
+		\end{array}
+		\right.
+	\end{equation}
+	这个方程等价的矩阵形式$ AX=b $如下$ (2.2) $所示,$ A=\left[
+	\begin{array}{ccc}
+		1 & 2 & 1 \\
+		3 & 8 & 1\\
+		0 & 4 & 1
+	\end{array}
+	\right] $,$ X=\left[
+	\begin{array}{c}
+		x \\
+		y\\
+		z
+	\end{array}
+	\right] $,$ b= \left[
+	\begin{array}{c}
+		2 \\
+		12\\
+		2
+	\end{array}
+	\right]$.
+	\begin{equation}
+		\left[
+		\begin{array}{ccc}
+			1 & 2 & 1 \\
+			3 & 8 & 1\\
+			0 & 4 & 1
+		\end{array}
+		\right]
+		\left[
+		\begin{array}{c}
+			x \\
+			y\\
+			z
+		\end{array}
+		\right]
+		=
+		\left[
+		\begin{array}{c}
+			2 \\
+			12\\
+			2
+		\end{array}
+		\right]
+	\end{equation}
+	为了方便，我们使用矩阵来表示消元，进行矩阵的初等行变换来消元.
+	$$
+	\left[
+	\begin{array}{ccc}
+		\textbf{1} & 2 & 1 \\
+		3 & 8 & 1\\
+		0 & 4 & 1
+	\end{array}
+	\right]
+	\rightarrow
+		\left[
+	\begin{array}{ccc}
+		\textbf{1} & 2 & 1 \\
+		0 & \textbf{2} & -2\\
+		0 & 4 & 1
+	\end{array}
+	\right]
+	\rightarrow
+		\left[
+	\begin{array}{ccc}
+		\textbf{1} & 2 & 1 \\
+		0 & \textbf{2} & -2\\
+		0 & 0 & \textbf{5}
+	\end{array}
+	\right]
+	 $$
+	 \qquad 我们将最后得到的上三角矩阵记作$ \textbf{U} $,在这个例子中,$ U=	\left[
+	 \begin{array}{ccc}
+	 	\textbf{1} & 2 & 1 \\
+	 	0 & \textbf{2} & -2\\
+	 	0 & 0 & \textbf{5}
+	 \end{array}
+	 \right] $.
+	 我们消元的目的就是$ A\rightarrow U $.
+	 在这里，我们求得主元的个数等于方程组中方程个数;假如主元个数小于方程组的个数时，需要用到行交换.
+	 
+	 我们下一步要做的是回代,将增广矩阵进行初等行变化.
+	 $$
+	 \left[
+	 \begin{array}{cccc}
+	 	1 & 2 & 1 & 2\\
+	 	3 & 8 & 1 & 12\\
+	 	0 & 4 & 1 & 2
+	 \end{array}
+	 \right]
+	 \rightarrow
+	 \left[
+	 \begin{array}{cccc}
+	 	1 & 2 & 1 & 2\\
+	 	0 & 2 & -2 & 6\\
+	 	0 & 4 & 1 & 2
+	 \end{array}
+	 \right]
+	 \rightarrow
+	 \left[
+	 \begin{array}{cccc}
+	 	1 & 2 & 1 & 2\\
+	 	0 & 2 & -2 & 6\\
+	 	0 & 0 & 5 & -10
+	 \end{array}
+	 \right]
+	 $$
+	 \qquad 消元侯最终得到的方程组如下$ (2.3) $所示：
+	 \begin{equation}
+	 	\left\{
+	 		\begin{array}{c}
+	 			x+2y+z=2\\
+	 			2y-2z=6\\
+	 			5z=-10
+	 		\end{array}
+	 	\right.
+	 \end{equation}
+    \qquad 显然我们可以得到原方程组的解为$ \left\{
+    \begin{array}{c}
+    	x=11\\
+    	y=-2\\
+    	z=-5
+    \end{array}
+    \right. $,但是我们关心的并不只是方程组的解,我们想要知道矩阵初等行变换是怎样发生的,在第一章中我们知道矩阵右乘一个列向量可以理解为矩阵列向量的线性组合,那么矩阵左乘一个行向量得到一个行向量，这个行向量是矩阵行向量的线性组合.所以在方程组$ AX=b $中,系数矩阵A的每一次初等行变换都可以理解为系数矩阵A左乘一个矩阵.
+    
+    所以本例子中的矩阵变化也可以写成以下的形式：
+    $$  
+    First:
+    \left[
+    \begin{array}{ccc}
+    	1 & 0 & 0\\
+    	-3 & 1 & 0\\
+    	0 & 0 & 1 
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{ccc}
+    	1 & 2 & 1\\
+    	3 & 8 & 1\\
+    	0 & 4 & 1
+    \end{array}
+    \right] 
+    =
+    \left[
+    \begin{array}{ccc}
+    	1 & 2 & 1\\
+    	0 & 2 & -2\\
+    	0 & 4 & 1
+    \end{array}
+    \right]
+    $$
+    $$
+    Second:
+    \left[
+    \begin{array}{ccc}
+    	1 & 0 & 0\\
+    	0 & 1 & 0\\
+    	0 & -2 & 1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{ccc}
+    	1 & 2 & 1\\
+    	0 & 2 & -2\\
+    	0 & 4 & 1
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{ccc}
+    	1 & 2 & 1\\
+    	0 & 2 & -2\\
+    	0 & 0 & 5
+    \end{array}
+    \right]
+    $$
+    \qquad 或者你也可以一步到位:
+    $$
+    \left[
+    \begin{array}{ccc}
+    	1 & 0 & 0\\
+    	-3 & 1 & 0\\
+    	 6 & -2 & 1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{ccc}
+    	1 & 2 & 1\\
+    	3 & 8 & 1\\
+    	0 & 4 & 1
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{ccc}
+    	1 & 2 & 1\\
+    	0 & 2 & -2\\
+    	0 & 0 & 5
+    \end{array}
+    \right]
+    $$
+    \qquad 我们可以知道对于$ \forall A\in R^{n}, \exists E \in R^{n} $,使得$ EA=U $.(E为初等矩阵)
+    
+    \textbf{置换矩阵}
+    
+    将单位矩阵$\textbf{I} $中要置换的两行置换位置得到置换矩阵$ \textbf{P} $.
+    
+    
+    
+    \textbf{注意点}
+    
+    1.$ AB \neq BA $
+    
+    2.矩阵左乘代表行变换,右乘代表列变换.
+	\chapter{乘法和逆矩阵}
+	\textbf{矩阵乘法}
+	
+	假设有矩阵A、B、C,$ C=AB $,矩阵A是m*n型矩阵,矩阵B是n*q型矩阵,矩阵C是m*q型矩阵.
+	两个矩阵相乘必须满足第一个矩阵的列数等于第二个矩阵的行数,相乘得到的矩阵行数和第一个矩阵相同，列数和第二个矩阵相同.
+	
+	\hspace*{\fill}\
+	
+	\textbf{简而言之}:$ col(A)=row(B) $,$ row(C)=row(A) $,$ col(C)=col(B) $.
+	
+	\hspace*{\fill}\
+	
+	且对于矩阵C中的任意一个元素$ c_{ij} $,我们有$ c_{ij}=row(A_{i}) * col(B_{j})$.
+	
+	\hspace*{\fill}\
+	
+	接下来我们从行向量和列向量的线性组合来考虑矩阵的乘法，首先是列向量的线性组合.矩阵C的每一列都可以看作是矩阵A和矩阵B对应列相乘的结果,那么矩阵A和矩阵B的列向量相乘就等价于矩阵A各列的线性组合,也就是说矩阵C的每一列均是矩阵A的列向量的线性组合.
+	
+	同理，我们分析矩阵C的行向量,矩阵C的每行向量我们可以看作矩阵B左乘一矩阵A对应行向量的结果,那么矩阵C的行向量等价于矩阵B行向量的线性组合.
+	
+	我们最后还有一种方法，用矩阵A的每一列和矩阵B的每一行相乘,再将这些结果相加得到矩阵C.
+	$$C=\sum_{i=1}^{m}row(A_{i})*col(B_{i})$$ 
+	这个思路其实揭示出分块矩阵相乘的原理.
+	
+	我们有矩阵$A=\left[
+	\begin{array}{cc}
+		A_{1} & A_{2} \\
+		A_{3} & A_{4} 
+	\end{array}
+	\right]$,矩阵$ B=\left[
+	\begin{array}{cc}
+		B_{1} & B_{2} \\
+		B_{3} & B_{4} 
+	\end{array}
+	\right] $,矩阵$ C=\left[
+	\begin{array}{cc}
+		A_{1}B_{1}+A_{2}B_{3} & A_{1}B_{2}+A_{2}B_{4} \\
+		A_{3}B_{1}+A_{4}B_{3} & A_{3}B_{2}+A_{4}B_{4} 
+	\end{array}
+	\right] $.其中$ A_{i}\quad B_{i} $均为矩阵.
+	
+	有了这个，我们反过来看矩阵乘法的最后一种计算方式，不难看出:令$ A=\left[
+	\begin{array}{cccc}
+		A_{1} & A_{2} & ... & A_{n}
+	\end{array}
+	\right] $,令$ B=\left[
+	\begin{array}{c}
+		B_{1} \\
+		B_{2} \\
+		... \\
+		B_{n} 
+	\end{array}
+	\right] $,其中$ A_{i} $是m*1的列向量,$ B_{i} $是1*q的行向量.那么$ C=\left[
+	\begin{array}{c}
+		\sum_{i=1}^{n} A_{i}B_{i}
+	\end{array}
+	\right] $.
+	
+	\hspace*{\fill}\
+	
+	\textbf{逆矩阵}
+	
+	注意点:
+	
+	1.逆矩阵、可逆等说法都是建立在方阵的基础上.
+	
+	2.逆矩阵若存在则唯一.
+	
+	定义:存在方阵A和方阵$ A^{-1} $,满足$ A^{-1}A=AA^{-1}=I $,我们称$ A^{-1} $为A的逆矩阵,A为可逆矩阵.
+	
+	思考:如何判断一个方阵是否可逆呢？
+	
+	方阵是否可逆取决于是否能找到非零列向量$ X $,使得方程$ AX=\textbf{0} $.
+	
+	$A$不可逆$\Leftrightarrow \exists X \in R^{n}/{\textbf{0}}$ ,方程$ AX=\textbf{0}$有解.
+	
+	\hspace*{\fill}\
+	\begin{proof}
+	假设方阵A可逆,$ \exists A^{-1} $,满足$ A^{-1}A=AA^{-1}=I $.
+	
+	$\because \qquad \exists X \in R^{n}$,使得$AX=\textbf{0}$
+	
+	$\therefore$\qquad $A^{-1}AX=A^{-1}\textbf{0}$
+	
+	又$\because$ \qquad $A^{-1}A=I$
+	
+	$\therefore$\qquad 左式=X$\neq$\textbf{0};右式=\textbf{0}
+	
+	明显 左式$\neq$右式,假设不成立,原命题得证.
+    \end{proof}
+	\textbf{求方阵逆矩阵}:高斯-若尔当法
+	
+	假设方阵A存在逆矩阵,我们令$ C=\left[ \begin{array}{cc}
+		A & I \\
+	\end{array} \right] $.我们对C进行矩阵的初等行变换，使得$ C^{'}=\left[ \begin{array}{cc}
+	I & E \\
+	\end{array} \right]  $,寻找到一系列初等行变换$ E=E_{1}E_{2}...E_{n} $,使得$ EC=C^{'}$.
+
+	根据分块矩阵的乘法原理,我们有$ EA=I $,$ EI=E $,根据逆矩阵存在的唯一性,我们知道$ E=A^{-1} $,那么矩阵$ C^{'}= \left[ \begin{array}{cc}
+		I & A^{-1} \\
+	\end{array} \right] $后半部分即是我们所求的$ A^{-1} $.
+
+	\textbf{重点}
+	
+	1.对于任意一个矩阵A,我们都可以进行高斯消元,$ \exists E=E_{n}...E_{2}E_{1} $,使得$ EA=U $.
+	则有$ A=E^{-1}U $,也就是下一章中提到的$ A=LU $分解.这其实是从总体上来看高斯消元,将高斯消元的多个步骤合成了一步.
+	
+	2.假设矩阵A可逆,矩阵B可逆,我们有$ (AB)^{-1}=B^{-1}A^{-1} $.
+	\begin{proof}
+		$ \because $A可逆,B可逆
+		
+		$ \therefore A^{-1}A=AA^{-1}=I $,$ BB^{-1}=B^{-1}B=I $
+		
+		又$\because (AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1} $
+		
+		$ \therefore (AB)(B^{-1}A^{-1})=AA^{-1}=I $
+		
+		即$ AB(B^{-1}A^{-1})=I $,根据逆矩阵存在的唯一性,$ B^{-1}A^{-1} $是AB的逆矩阵.
+	\end{proof}
+	3.假设A可逆,A的转置$ A^{T}$逆矩阵$ (A^{T})^{-1}=(A^{-1})^{T} $
+	\begin{proof}
+		$ \because $ A可逆
+		
+		$\therefore A^{-1}A=I$
+		
+		等式两边同时取转置,得到$(A^{-1}A)^{T}=I^{T}$
+		
+		$ \therefore (A^{-1}A)^{T}=I$ $\Rightarrow$ $A^{T}(A^{-1})^{T}=I$
+		
+		根据逆矩阵存在的唯一性,我们知道$ A^{T} $的逆矩阵是$ (A^{-1})^{T} $.          
+	\end{proof}
+	4.$ (AB)^{T}=B^{T}A^{T} $
+	\begin{proof}
+		假设A、B都是n*n型矩阵,$ C=(AB)^{T} $,对于矩阵C中任意一个元素$ c_{ij} $,$ c_{ij}=row(A_{j})*col(B_{i}) \Rightarrow c_{ij}=\sum_{k=1}^{n}a_{jk}b_{ki} $.
+		
+		令$ C^{'}=B^{T}A^{T} $,对于矩阵$ C^{'} $中任意一个元素$ c_{ij}^{'} $,$c_{ij}^{'}=row(B_{i}^{T})*col(A_{j}^{T}) \Rightarrow c_{ij}^{'}=\sum_{k=1}^{n}b_{ik}^{T}a_{kj}^{T} $
+		
+		$\because \forall k\in n  $,$ a_{kj}^{T}=a_{jk} $,$ b_{ik}^{T}=b_{ki} $
+	
+	 	对于矩阵C和矩阵$ C^{'} $中任意元素，都有$ c_{ij}=c_{ij}^{'} $.
+	 	
+	 	$\therefore (AB)^{T}=B^{T}A^{T}$
+	\end{proof}
+	\chapter{矩阵$A$的$LU$分解}
+	\textbf{矩阵$A$的$LU$分解}
+	
+	对于矩阵$A$,假设在高斯消元的过程中没有进行交换行的操作,我们进行一系列的初等行变换得到矩阵$U$.
+	
+	在每一步消元过程中,相当于矩阵$A$左乘一个矩阵$E_{i}$,存在矩阵$ E=E_{n}...E_{2}E_{1} $,使得$EA=U$.
+	
+	对于$ EA=U $等式两边同时左乘$ E^{-1} $,我们得到了$ A=E^{-1}U $.这就是矩阵$A$的$LU$分解.
+	(L代表下三角形矩阵,U代表上三角形矩阵)
+	
+	接下来我们来看几个例子:
+	
+	1.$ A=\left[\begin{array}{cc}
+		2 & 1\\
+		8 & 7
+	\end{array}\right] $
+
+	对$ A $进行初等行变换:
+	$\left[\begin{array}{cc}
+		1 & 0\\
+		-4 & 1
+	\end{array}\right]
+	\left[\begin{array}{cc}
+		2 & 1\\
+		8 & 7
+	\end{array}\right] 
+	=
+	\left[\begin{array}{cc}
+		2 & 1\\
+		0 & 3
+	\end{array}\right] $,其中$ E_{21}=\left[\begin{array}{cc}
+	1 & 0\\
+	-4 & 1
+\end{array}\right] $,$ U=\left[\begin{array}{cc}
+2 & 1\\
+0 & 3
+\end{array}\right] $,即$ E_{21}A=U $.
+我们想要得到$ A=LU $的形式,我们必须求出$ E_{21}^{-1} $.在这个例子中,明显得出$ E_{21}=\left[\begin{array}{cc}
+	1 & 0\\
+	4 & 1
+\end{array}\right] $.即$ L=\left[\begin{array}{cc}
+1 & 0\\
+4 & 1
+\end{array}\right] $.
+$$A=LU \Leftrightarrow \left[\begin{array}{cc}
+	2 & 1\\
+	8 & 7
+\end{array}\right]=\left[\begin{array}{cc}
+1 & 0\\
+4 & 1
+\end{array}\right]\left[\begin{array}{cc}
+2 & 1\\
+0 & 3
+\end{array}\right] \Rightarrow \left[\begin{array}{cc}
+1 & 0\\
+4 & 1
+\end{array}\right]\left[\begin{array}{cc}
+2 & 0\\
+0 & 3
+\end{array}\right]\left[\begin{array}{cc}
+1 & \frac{1}{2}\\
+0 & 1
+\end{array}\right]$$
+
+上面式子最后三项可以理解为$ A=LDU $,其中D是对角矩阵.
+
+\hspace*{\fill}\
+
+2.假设A是一个3*3矩阵.我们有$ E_{32}E_{31}E_{21}A=U $.$ A=E_{32}^{-1}E_{31}^{-1}E_{21}^{-1}U $.我们可以得出$ L=E_{32}^{-1}E_{31}^{-1}E_{21}^{-1} $.
+
+\textbf{消元的次数分析}
+
+假设一次乘法和一次减法算作一次操作,矩阵A为n*n的非零矩阵,A进行初等行变换时没有交换行,那么矩阵A消元次数$ N_{1}=\sum_{i=2}^{n}i(i-1) $.
+$$N_{1}=\sum_{i=1}^{n}i^{2}-\sum_{i=1}^{n}i \Leftrightarrow N_{1}=\frac{n(n+1)(2n+1)}{6}-\frac{n(n+1)}{2}=\frac{n^{3}-n}{3}  $$
+对于方程$ AX=b $,右侧向量$ b $在消元过程中的操作数$ N_{2}=\sum_{i=1}^{n-1}i=\frac{n(n-1)}{2} $.
+
+总的来说，解决方程$ AX=b $,我们需要进行高斯消元的操作数为$ N=N_{1}+N_{2}=\frac{2n^{3}+3n^{2}-5n}{6} $.
+
+接下来我们考虑矩阵A在进行消元过程中发生行交换的情况,对此我们首先要研究置换矩阵$P$.
+置换矩阵$ P_{ij} $指的是$P_{ij}A$得到矩阵A第$ i j $行交换的矩阵.
+
+对于$n$阶矩阵形式而言,一共有$A_{n}^{n}$种不一样的置换矩阵$P_{ij}$ 
+
+置换矩阵满足的性质:$ P_{ij}^{-1}=P_{ij}^{T}=P_{ji} $
+
+所以我们改进高斯消元的矩阵形式$ A=LU \Rightarrow PA=LU $,我们在下一章会继续讲解这些问题.
+	\chapter{转置、置换、向量空间}
+	\textbf{置换矩阵}$ Permutations $ 行交换
+	
+	我们在求解线性方程组$ AX=b $时,通常会遇到主元位置为0的情况,这时候要进行行互换才能继续消元.
+	高斯消元的矩阵形式变为:$ PA=LU $,且对于任意可逆矩阵A,都有此种形式
+	
+	\textbf{转置} $ Transpose $
+	
+	对于矩阵$A$,$A$的转置$A^{T}$,假设$A$时m*n阶矩阵,对于$\forall i \in m \quad  \forall j\in n$,\qquad $A_{ij}=A^{T}_{ji}$.
+	
+	\hspace*{\fill}\
+	
+	\textbf{对称矩阵}
+	
+	存在矩阵$A$,满足$A^{T}=A$,我们称$A$为对称矩阵.
+	
+	对于任意矩阵$A$,$A$的转置矩阵$A^{T}$,$B=AA^{T}$,$C=A^{T}A$,则$B$、$C$均为对称矩阵.
+	\begin{proof}
+		设矩阵$A$是m*n型矩阵,$B$是m*m型矩阵,$C$是n*n型矩阵.
+		
+		对于$\forall i\in m \quad \forall j \in m$,
+		$b_{ij}=row(A_{i})$*$col(A_{j}^{T})$;
+		$b_{ji}=row(A_{j})$*$col(A_{i}^{T})$
+		
+		$\because row(A_{i})=col(A_{i}^{T})^{T}$$\qquad row(A_{j})=col(A_{j}^{T})^{T}$
+		
+		$\therefore b_{ij}=col(A_{i}^{T})^{T}$*$col(A_{j}^{T})$;\qquad
+		$b_{ji}=col(A_{j}^{T})^{T}$*$col(A_{i}^{T})$
+		
+		$\therefore b_{ij}=b_{ji}$,$B$是对称矩阵；同理$C$也是对称矩阵.
+	\end{proof}
+	\hspace{\fill}\
+	
+	\textbf{向量空间}  $Vector Space $
+	
+	定义:
+	
+	1.\textbf{0}向量必须包含在向量空间中.
+	
+	2.对于任意一个向量空间$R^{n}$,对于$\alpha \in R^{n} \quad \beta \in R^{n}$,$\alpha+\beta \in R^{n}$,$\alpha-\beta \in R^{n}$;对于$ \forall x \in R $,$x$*$\alpha \in R^{n}$.
+	(换句话说,就是向量空间对加减法、数乘封闭).
+	
+	我们并不关心整个$ R^{n}$,我们关心的是其中的子空间.举个简单的例子.我们来看$ R^{2} $向量空间中的一个子空间,一条过原点的直线、原点、$R^{2}$空间本身.
+	
+	存在矩阵$A$是m*n阶矩阵,矩阵$A$列向量组成的向量空间(列向量的线性组合)是$R^{n}$的向量子空间,称作矩阵的列空间$C(A)$.
+	
+	\chapter{列空间和零空间}
+	\textbf{子空间}
+	
+	假设$R^{3}$的两个子空间:$P$过原点的平面和$L$过原点的直线,\quad$P\cup L$和$P\cap L$是否还是向量子空间？
+	
+	$P\cup L$不是子空间,$P\cap L$是子空间
+	\begin{proof}
+		不妨任意取$ \alpha \in P\cap L, \quad \beta \in P\cap L $
+		
+		对于任意$x\in R, \quad y \in R$,由于$P$、$L$均为子空间
+		
+		因此$x\alpha+y\beta \in P$,\quad $x\alpha+y\beta \in L$
+		所以我们得出$x\alpha+y\beta \in P\cap L$.即$P\cap L$是向量子空间.
+	\end{proof}
+	\textbf{列空间}\qquad $Column \quad Space\quad of\quad A$
+	
+	问题:对于方程$AX=b$是否对于任意的b都有解？
+	 
+	 当$b \in C(A)$时,方程组一定有解,右侧向量$b$在矩阵$A$的列向量线性组合的列空间内时,等价于原方程有解.
+	 
+	 \textbf{零空间}\qquad  $Null\quad Space\quad of \quad A$
+	 满足方程$AX=0$的解$X$的集合是矩阵$A$的零空间,我们称之为$N(A)$.如何证明这个集合内的向量构成了一个子向量空间？
+	 \begin{proof}
+	 	我们不妨将$AX=0$的解集称作N.
+	 	
+	 	任取$\alpha \in N ,\quad \beta\in N$,\quad$\forall x \in R ,\quad y\in R $,\quad $\gamma=x\alpha+y\beta$.
+	 	
+	 	由于$A\alpha=0$;\quad $A\beta=0$
+	 	
+	 	$A\gamma=A(x \alpha+y\beta)=x(A\alpha)+y(A\beta)=0$.
+	 	
+	 	$N(A)$是子空间,我们称之为零空间.
+	 \end{proof}
+	 我们用具体的例子来看一下列空间和零空间.
+	 
+	 矩阵$A=\left[\begin{array}{ccc}
+	 	1 & 1 & 2\\
+	 	2 & 1 & 3\\
+	 	3 & 1 & 4\\
+	 	4 & 1 & 5
+	 \end{array}\right]$,$X=\left[\begin{array}{c}
+	 x_{1}\\x_{2}\\x_{3}
+ \end{array}\right]$,$b=\left[\begin{array}{c}
+ 1\\2\\3\\4
+\end{array}\right]$,方程$AX=b$.
+
+显然我们可以得到$X=\left[\begin{array}{c}
+	1\\0\\0
+\end{array}\right]$是方程的解,但是方程远不止这一个解,这是原方程的一个特解.
+
+方程$AX=0$的一个特解为$X=\left[\begin{array}{c}
+	1\\1\\-1
+\end{array}\right]$,零空间为过原点的一条直线$ \in R^{3} $.列空间为过原点的一个平面$\in R^{4}$.
+	 
+	 
+	\chapter{求解$Ax=0$;主变量和特解}
+	关于求解$AX=b$,我们先来看一个例子:$A=\left[\begin{array}{cccc}1&2&2&2\\2&4&6&8\\3&6&8&10
+	\end{array}\right] X=\left[\begin{array}{c}
+	x_{1}\\x_{2}\\x_{3}
+\end{array}\right]$.我们需要注意随着消元,不变的是方程组的解,零空间$N(A)$不会发生变化,但是列空间$C(A)$随着消元会发生改变.我们来写出高斯消元的过程.
+
+\hspace{\fill}\
+
+	$\left[\begin{array}{cccc}1&2&2&2\\2&4&6&8\\3&6&8&10
+	\end{array}\right]\rightarrow \left[\begin{array}{cccc}1&2&2&2\\0&0&2&4\\0&0&2&4
+\end{array}\right]\rightarrow \left[\begin{array}{cccc}1&2&2&2\\0&0&2&4\\0&0&0&0
+\end{array}\right]$ 
+
+$U=\left[\begin{array}{cccc}1&2&2&2\\0&0&2&4\\0&0&0&0
+\end{array}\right]$
+
+矩阵$U$中非零行的数被称为主元数,也称作矩阵的秩.我们用数学语言描述:$rank(A)=rank(U)=Number(Pivot)$.
+
+在本例子中,当$b=0$时,消元对于方程组的解没有影响,我们来求出零空间首先找出主变量(每一个非零行第一个非零元素所在的列),主变量也被称为主元,主元所在的列被称为主列,非主列被称为自由列.
+
+我们将消元后得到的矩阵$U$回代到方程组中得到消元后的方程组:
+$$\left\{\begin{array}{c}
+	x_{1}+2x_{2}+2x_{3}+2x_{4}=0\\
+    2x_{3}+4x_{4}=0
+\end{array}\right.$$
+\qquad 尽管这样我们还是无法一眼看出结果,其实我们可以对$U$进一步化简得到简化行阶梯矩阵$rref(A)$,我们称之为$R$.满足主元列除了主元的位置是1其余位置全为0.我们适当调整主元列的位置,使得主元列全部在前,我们得到一个矩阵$R$,它的形式形如$\left[\begin{array}{cc}
+	I&F\\
+	\textbf{0}&\textbf{0}
+\end{array}\right]$ .$I$是一个$r*r$的矩阵,代表有$r$个主元,$F$是一个$(n-r)* (n-r)$的矩阵,代表有$(n-r)$个自由元.我们有如下式$(7.1)$的关系:
+\begin{equation}
+	AX=0\Leftrightarrow UX=0 \Leftrightarrow RX=0
+	\quad \rightarrow \left[\begin{array}{cc}
+		I&F\\
+		\textbf{0}&\textbf{0}
+	\end{array}\right]\left[\begin{array}{c}
+	X_{Pivot}\\ X_{Free}
+\end{array}\right]=\textbf{0}
+\end{equation}
+	\qquad 我们可以得出$X_{Pivot}=-F$,$X_{Free}=I$,零空间是$\left[\begin{array}{c}
+	-F\\I
+\end{array}\right]$的线性组合得到的向量空间.
+
+我们还是回到这个例子,我们可以得到化简后的简化行阶梯矩阵$R=\left[\begin{array}{cccc}
+	1&2&0&-2\\0&0&1&2\\0&0&0&0
+\end{array}\right]\rightarrow \left[\begin{array}{cccc}
+1&0&2&-2\\0&1&0&2\\0&0&0&0
+\end{array}\right]$.有两个主元,两个自由元,我们可以得到最简化的方程组如下:
+$$\left\{\begin{array}{c}
+	x_{1}+2x_{2}-2x_{4}=0\\
+	x_{3}+2x_{4}=0
+\end{array}\right.$$
+我们得到方程组的两个特解$X_{1}=\left[\begin{array}{c}
+	2\\0\\-2\\1
+\end{array}\right]\quad X_{2}=\left[\begin{array}{c}
+-2\\1\\0\\0
+\end{array}\right]$.$A$的零空间$N(A)=cX_{1}+dX_{2} ,\quad c\in R, \quad d\in R$.
+
+我们来看另一个矩阵$A=\left[\begin{array}{ccc}1&2&3\\2&4&6\\2&6&8\\2&8&10
+\end{array}\right]$,经过消元得到$U=\left[\begin{array}{ccc}1&2&3\\0&2&2\\0&0&0\\0&0&0
+\end{array}\right]$,$R=\left[\begin{array}{ccc}1&0&1\\0&1&1\\0&0&0\\0&0&0
+\end{array}\right]$.说明只有一个自由变量,两个主元.方程组$AX=0$的特解有一个$X_{1}=\left[\begin{array}{c}-1\\-1\\1
+\end{array}\right]$.$A$的零空间$N(A)=cX_{1} ,\quad c\in R$.
+
+\textbf{注意点}
+
+1.这一章我们主要讨论了方程组$AX=0$的解,即$A$的零空间,我们知道如何去用高斯消元的方法去求解零空间的结构.
+
+2.关于方程$AX=b$的解我们下一章进行讨论,我们已经知道要想要方程组有解必须要满足的条件是$b\in C(A)$.
+	\chapter{可解性和解的结构}
+	\textbf{可解性}\quad $Slovability$
+	
+	方程组$AX=b$有解等价于$b \in C(A)$,还有另一种表述:$A$中行向量的线性组合得到零行,右侧向量各行同样的线性组合必然得到0.
+	
+	如何求解方程$AX=b$?
+	
+	1.我们首先要找到一个特解$X_{p}$:令所有的自由变量全部取0
+	
+	2.我们要求出零空间中的向量$X_{n}\in N(A)$
+	
+	$AX_{p}=b;\quad AX_{n}=0 \quad \rightarrow A(X_{p}+X_{n})=b$.
+	
+	所以我们得到方程组的全部解为$X_{p}+X_{n}$
+	
+	我们还是来看一个例子:
+	
+	\hspace{\fill}\
+	
+	$A=\left[\begin{array}{cccc}
+		1&2&2&2\\2&4&6&8\\3&6&8&10      
+	\end{array}\right]$,$b=\left[\begin{array}{c}
+		b_{1}\\b_{2}\\b_{3}\end{array}\right]$.方程组的增广矩阵$A_{1}=\left[\begin{array}{ccccc}
+		1&2&2&2&b_{1}\\2&4&6&8&b_{2}\\3&6&8&10&b_{3}
+	\end{array}\right]$
+
+	对$A_{1}$进行消元,我们得到以下的过程:
+	$$\left[\begin{array}{ccccc}
+		1&2&2&2&b_{1}\\2&4&6&8&b_{2}\\3&6&8&10&b_{3}
+	\end{array}\right]\rightarrow \left[\begin{array}{ccccc}
+	1&2&2&2&b_{1}\\0&0&2&4&b_{2}-2b_{1}\\0&0&0&0&b_{3}-b_{1}-b_{2}
+\end{array}\right]$$
+	当$b_{3}-b_{1}-b_{2}=0$时,方程组有解.我们不妨令$b=\left[\begin{array}{c}
+		1\\5\\6
+	\end{array}\right]$.消元结果为$\left[\begin{array}{ccccc}
+	1&2&2&2&1\\0&0&2&4&3\\0&0&0&0&0
+\end{array}\right]$,令自由变量$x_{2}=0,x_{4}=0$,我们得到方程组的一个特解$X_{p}=\left[\begin{array}{c}
+-2\\0\\\frac{3}{2}\\0
+\end{array}\right]$.
+在上一章中我们得到了零空间$N(A)=cX_{1}+dX_{2} ,\quad c\in R, \quad d\in R$.$X_{1}=\left[\begin{array}{c}
+	2\\0\\-2\\1
+\end{array}\right]\quad, X_{2}=\left[\begin{array}{c}
+	-2\\1\\0\\0
+\end{array}\right]$.
+
+所以我们得到原方程组的解为$X=X_{p}+cX_{1}+dX_{2};c\in R,\quad d\in R$
+$X=\left[\begin{array}{c}
+	-2\\0\\\frac{3}{2}\\0
+\end{array}\right]+c\left[\begin{array}{c}
+2\\0\\-2\\1
+\end{array}\right]+d\left[\begin{array}{c}
+-2\\1\\0\\0
+\end{array}\right];c\in R,d\in R$
+
+\hspace{\fill}\
+
+\textbf{行满秩和列满秩}
+
+假设矩阵$A$是$m*n$型的矩阵,$rank(A)=r$,满足$r\leqslant min(m,n)$.我们来看一下满秩的情况.
+
+1.列满秩$\quad r=n<m$
+
+此时方程中没有自由变量,$N(A)=\textbf{0}$,如果方程组有解,那么有且只有一个特解$X_{p}$或者方程组没有解.消元得到的矩阵$R=\left[\begin{array}{c}
+	I\\\textbf{0}
+\end{array}\right]$.
+
+2.行满秩$\quad r=m<n$
+
+此时方程组有$m$个主元,消元过程中不会出现零行,在方程$AX=b$中,对于任意的右侧向量$b$,方程组都有解.消元得到矩阵$R=\left[\begin{array}{cc}
+	I&F
+\end{array}\right]$.方程组有无穷多个解.
+
+3.满秩矩阵 $\quad r=m=n$
+
+此时矩阵为可逆矩阵,消元结果$R=I$,零空间$N(A)=\textbf{0}$,方程组有且只有1个解.
+
+4.非满秩矩阵$r<m,r<n$
+
+此时方程组有$r$个主元,$(n-r)$个自由元,方程组中会出现零行,消元得到的矩阵$R=\left[\begin{array}{cc}
+	I&F\\\textbf{0}&\textbf{0}
+\end{array}\right]$,方程组解的个数为$\textbf{0}$个或者无穷多个
+	\chapter{线性相关性、基和维数}
+	\textbf{线性相关性}
+	
+	设有向量$x_{1},x_{2}...x_{n}$,假设存在不全为$0$的$\alpha_{1},\alpha_{2}...\alpha_{n}$使得$\alpha_{1}x_{1}+\alpha_{1}x_{2}+...+\alpha_{n}x_{n}= \textbf{0}$,我们称向量$x_{1},x_{2}...x_{n}$线性相关,反之则称这些向量线性无关.
+	
+	1.零向量和任意向量都线性相关.
+	
+	2.向量之间线性相关,我们一定可以找到一组不全为0的线性组合，使其为零向量.
+	
+	3.矩阵$A$列向量线性相关$\rightarrow$矩阵$A$零空间内存在非零向量;矩阵$A$列向量线性无关$\rightarrow$矩阵$A$零空间内只有零向量.
+	
+	\textbf{基和维数}
+	
+	向量$V_{1},V_{2}...V_{n}$生成一个向量空间$\Leftrightarrow$向量空间包含$V_{1},V_{2}...V_{n}$的所有线性组合.我们不妨设这个生成的向量空间为$S$,$S$是最小的包含向量组所有线性组合的向量空间.任意给定一个向量组,我们都能得到一个由这个向量组线性组合生成的向量空间$S$.
+	
+	\textbf{基}
+	
+	向量空间的基:指的是一个向量组中的所有向量,这些向量被称为向量空间的基.他们满足以下一些性质:
+	
+	1.这个向量组中的向量都是线性无关的.
+	
+	2.他们能够生成整个向量空间.
+	
+	3.基可以有很多组,但是基向量的向量个数相同,$R^{n}$向量空间的基的个数为$n$个,我们称这个个数为向量空间的维数.
+	
+	\textbf{维数}
+	
+	$dim(N(A))=n-rank(A)$,\qquad $dim(R^{n})=n$
+	
+	列空间的维数等于矩阵的秩,等价于矩阵的主元列个数.
+	$dim(C(A))=rank(A)=N(pivot column)$
+	
+	如果我们知道某个向量空间的维数,在这个向量空间中任意$dim(S)$个线性无关的向量都可以组成这个向量空间的一组基.
+	\chapter{四个基本子空间}
+	\textbf{零空间、列空间、行空间和转置零空间}
+	
+	$N(A),\quad C(A),\quad C(A^{T}),\quad N(A^{T}) $
+	
+	我们也可以理解为矩阵$A$的零空间和列空间、矩阵$A^{T}$的零空间和列空间,矩阵$A$是m*n型矩阵,这四个基本子空间之间有什么关系呢？
+	
+	1.$N(A) \in R^{n},\quad C(A^{T})\in R^{n}$;\qquad $C(A)\in R^{m},\quad N(A^{T})$.
+	
+	2.$dim(C(A))=rank(A)=r,\quad dim(N(A))=n-rank(A)=n-r$;\qquad $dim(C(A^{T}))=rank(A)=r,\quad dim(N(A^{T}))=m-rank(A)=m-r$.
+	
+	3.向量空间中基的求解
+	
+	(1).由于矩阵的行变换不会改变矩阵的行空间,所以矩阵的行空间的一组基可以是消元后的主元行.
+	
+	(2).矩阵的行变换会改变矩阵的列空间,但是我们可以将矩阵的主元列对应的几个列向量作为列空间的一组基.
+	
+	(3).零空间的基个数是自由变量的个数$(n-r)$,分别取$I_{n-r}$中的每一列得到.
+	
+	(4).转置零空间$N(A^{T})$
+	
+	$A^{T}y=\textbf{0}$,两边同时取转置得到$y^{T}A=\textbf{0}(Row)$
+	
+	我们将矩阵$A$化简得到矩阵$R$的过程中进行初等行变化,因此我们可以找到一个可逆矩阵$E$,使得$EA=R$,$R$中存在的零行对应$E$中的线性组合即为左零空间$N(A^{T})$的一组基.
+	\chapter{矩阵空间、秩1矩阵和小世界图}
+	
+	\textbf{矩阵空间}
+	
+	由于矩阵可以进行加法和数乘运算,我们可以将矩阵当作向量,矩阵线性组合得到的空间成为矩阵空间.同理矩阵空间也存在基和维数,矩阵空间也有子空间.\qquad $n$维矩阵空间的表示方法$R^{n*n}$.
+	
+	我们以矩阵空间$M$为例,$M$是3*3矩阵构成的矩阵空间.所有的3*3的上三角型矩阵构成的矩阵空间$M_{1}$;所有3*3下三角型矩阵构成的矩阵空间$M_{2}$;所有的3*3对称矩阵构成的矩阵空间$M_{3}$;我们可以看出$M_{1},M_{2},M_{3}$都是$M$的子空间.
+	
+	$M$的一组基为$\left[\begin{array}{ccc}
+		1&0&0\\0&0&0\\0&0&0
+	\end{array}\right],\left[\begin{array}{ccc}
+	0&1&0\\0&0&0\\0&0&0
+\end{array}\right],\left[\begin{array}{ccc}
+0&0&1\\0&0&0\\0&0&0
+\end{array}\right]...\left[\begin{array}{ccc}
+0&0&0\\0&0&0\\0&0&1
+\end{array}\right]$.
+$dim(M)=9$,$M_{1},M_{2},M_{3}$的基都是$M$基的子集,$M_{1},M_{2},M_{3}$的维数取决于一组基中基的个数.我们接下来来看矩阵空间的交集和矩阵空间之和.
+
+我们之前证明过任意两个子空间的交集仍然是一个子空间,两个子空间的并集不一定是一个子空间.我们以$M_{1},M_{2},M_{3}$为例,$M_{1}\cap M_{2}$是对角矩阵,$M_{2}\cap M_{3}$也是对角矩阵.我们将$M_{1}+M_{2}$记作两个空间的和,也可以写作为$sum(M_{1},M_{2})$.
+
+\textbf{秩1矩阵}
+
+存在矩阵$A$,$rank(A)=1$,我们称矩阵$A$为秩1矩阵.此时矩阵$A=CR$,其中$C$为一个列向量,$R$为一个行向量;同时也分别是矩阵$A$列空间和行空间的一组基.
+
+我们来看一个例子:$S$是所有向量$V=\left[\begin{array}{c}
+	v_{1}\\v_{2}\\v_{3}\\v_{4}
+\end{array}\right]$的集合,其中$v_{1}+v_{2}+v_{3}+v_{4}=0$,$S$是一个子空间吗？如果是，求出这个空间的一组基？
+
+$S$是一个子空间,令$A=\left[\begin{array}{cccc}
+	1\\1\\1\\1
+\end{array}\right]$,$S$就是方程$AX=0$的解集,$S$是矩阵$A$的零空间.我们通过消元后发现矩阵$A$有3个自由变量,$S$的一组基为$\left[\begin{array}{c}
+1\\-1\\0\\0
+\end{array}\right],\left[\begin{array}{c}
+1\\0\\-1\\0
+\end{array}\right],\left[\begin{array}{c}
+1\\0\\0\\-1
+\end{array}\right]$.
+
+	\chapter{图和网络}
+	\textbf{图}
+	
+	图是连接节点和边的集合:$Graph=\left\{nodes,edges\right\}$
+	
+	我们用矩阵来表示图,假设图有$n$个节点,$m$条边,我们用$m*n$的矩阵$A$来表示这个图,矩阵的每一列表示每一个节点,每一行表示每一条边,边的起点用-1表示,边的终点用1表示.我们可以得到一个表示图的矩阵.\quad $dim(N(A))=n-r$.
+	
+	比如以下的这个图$G$,它的关联矩阵形式$A=\left[\begin{array}{cccc}
+		-1&1&0&0\\0&-1&1&0\\-1&0&1&0\\-1&0&0&1\\0&0&-1&1
+	\end{array}\right]$.方程$AX=b$的结果得到的是格格节点之间的差距.在实际问题中,比如在电场中各个点之间的电势差.$AX=0$得到的方程组如下:
+$$\left\{\begin{array}{c}
+	x_{2}-x_{1}=0\\x_{4}-x_{3}=0\\x_{3}-x_{1}=0\\x_{4}-x_{1}=0\\x_{4}-x_{3}=0
+\end{array}\right.$$
+关于矩阵$A$的零空间,我们可以很容易得到$dim(N(A))=3$,$N(A)=c\left[\begin{array}{c}
+	1\\1\\1\\1
+\end{array}\right],\quad c\in R$.
+
+接下来我们来看以下$A^{T}y=0$.我们仍然将其放在电场问题中,$y=\left[\begin{array}{c}
+	y_{1}\\y_{2}\\y_{3}\\y_{4}\\y_{5}
+\end{array}\right]$是每条边上的电流,$A^{T}y=0$就是基尔霍夫电流定律$KCL$.我们同样可以得到一个方程组:
+$$\left\{\begin{array}{c}
+	-y_{1}-y_{3}-y_{4}=0\\y_{1}-y_{2}=0\\y_{2}+y_{3}-y_{5}=0\\y_{4}+y_{5}=0
+\end{array}\right.$$我们知道$A^{T}$的零空间的维数$dim(N(A^{T})=m-r$,在本例中$dim(N(A^{T}))=2$,我们可以找到$A^{T}$的零空间的一组基$\left[\begin{array}{c}
+1\\1\\-1\\0\\0
+\end{array}\right],\left[\begin{array}{c}
+2\\2\\-1\\1\\-1
+\end{array}\right]$
+
+
+$y=Ce$,$e=AX$,$A^{T}y=f$,应用数学中的三个基本方程,$y$表示电流,$e$表示电势差,$C$表示常量,其实就是电阻,$X$表示各点的电势，$f$表示电路中有电源的情况,我们能得到以下的电路综合方程:
+\begin{equation}
+	A^{T}CAX=f
+\end{equation}
+
+\textbf{树}
+Tree:没有回路的图被称为树.
+
+\textbf{欧拉公式}
+
+${nodes,edges,loops}$三者之间的关系:
+\begin{equation}
+	N(nodes)+N(loops)-N(edges)=1
+\end{equation}
+	\part{投影、行列式和特征值}
+	\chapter{正交向量和子空间}
+	\textbf{正交} $\quad Orthogonal$
+	
+	正交向量:\ 列向量$x,y$,$x^{T}y=0$,我们就说向量$x,y$正交,或者说两向量正交(垂直).\textbf{零向量和任意向量都正交.}
+	
+	向量长度:\ $x$的长度$l^{2}=x^{T}*x\Leftrightarrow l=\sqrt{x_{1}^{2}+x_{2}^{2}...+x_{n}^{2}}$.
+	
+	判断两向量是否正交:\ 向量$x,y$正交\ $x^{T}y=0\ \Leftrightarrow y^{T}x=0\ \Leftrightarrow |x+y|^{2}=|x|^{2}+|y|^{2}$
+	\begin{proof}
+		$\because |x+y|=\sqrt{(x+y)^{T}(x+y)}$
+		
+		$\therefore |x+y|^{2}=x^{T}x+x^{T}y+y^{T}x+y^{T}y$
+		
+		当$x,y$正交时,$x^{T}y=y^{T}x=0$
+		
+		$\therefore |x+y|^{2}=x^{T}x+y^{T}y=|x|^{2}+|y|^{2}$
+	\end{proof}
+	\textbf{子空间正交}
+	
+	子空间正交:\ 存在子空间$S$和子空间$T$,对于$\forall x \in S,\ \forall y\in T$,$x^{T}y=0$(x,y正交),则$S\perp T$.
+	
+	1.\textbf{四个基本子空间的正交关系}
+	
+	$C(A^{T})\perp N(A)$,\qquad $C(A)\perp N(A^{T})$,\qquad 正交的两个子空间互为正交补.
+	
+	首先我们看的是$A$的零空间和行空间正交,$\forall v\in N(A)$,$Av=0$,对于矩阵$A$的所有行向量$A_{1},A_{2}...A_{m}$,我们有$A_{1}v=0,A_{2}v=0...A_{m}v=0$,而$A$的行空间为行向量的线性组合,$\forall w \in C(A^{T}),w=c_{1}A_{1}+c_{2}A_{2}...+c_{m}A_{m}$,\ $wv=c_{1}A_{1}v+c_{2}A_{2}...+c_{m}A_{m}v=0$.因此矩阵$A$的零空间和行空间正交.
+	
+	我们接下来看的是矩阵$A$的列空间和转置零空间,设$A^{T}$的各行为$A_{1},A_{2}...A_{n}$,$\forall w\in N(A^{T})$,我们有$A_{1}w=0,A_{2}w=0...A_{n}w=0$,根据矩阵转置,我们知道$A_{1}=col_{1}^{T},A_{2}=col_{2}^{T}...A_{n}=col_{n}^{T}$,所以我们得到$col_{1}^{T}w=0,col_{2}^{T}w=0...col_{n}^{T}w=0$,\ $A$的列空间为列向量的线性组合,\ $\forall v\in C(A),\ v=c_{1}col_{1}+c_{2}col_{2}...+c_{n}col_{n}$,$w*v^{T}=w*col_{1}^{T}+w*col_{2}^{T}...w*col_{n}^{T}=0$.因此矩阵$A$的列空间和转置零空间正交.
+	
+	\textbf{求解一个无解的方程组$AX=b$的解}
+	
+	在现实实际问题中我们往往能得到很多数据,他们有许多是无用的,我们得到方程组$AX=b$,矩阵$A$是m*n型矩阵,其中$m>n$,我们需要剔除一些数据求出方程组的最优解.
+	
+	我们来求解方程组$A^{T}A\hat{X}=A^{T}b$,矩阵$A^{T}A$变成$n*n$型矩阵,$A^{T}A$不一定是可逆矩阵,具体要看矩阵$A$的列向量是否线性无关,如果矩阵$A$列向量线性无关,矩阵$A^{T}A$可逆.
+	$$N(A^{T}A)=N(A),\quad rank(A^{T}A)=rank(A)$$
+	\chapter{子空间投影}
+	\textbf{投影}\  $Project$
+	
+	存在向量$a,b$,向量$b$在向量$a$方向上的投影$p=xa$,向量$b-p$满足$(b-p)\perp a$,所以我们得到$(b-xa)*a=0$;即$x=\frac{b^{T}a}{a^{T}a}$,向量$b$在向量$a$方向上的投影$p=\frac{b^{T}a}{a^{T}a}\textbf{a}$.
+	
+	我们想要向量$b$直接得到在向量$a$上的投影向量$p$,$p=Pb$,我们将$P$称之为投影矩阵,$P=\frac{aa^{T}}{a^{T}a}$.
+	
+	\textbf{当矩阵$A$列空间为1维时,矩阵$P$有一些特殊的性质},
+	
+	1.例如$C(A)=ca,c\in R;\ rank(A)=1$
+	
+	2.投影矩阵$P$的列空间是过向量$a$的一条直线.
+	
+	3.$P^{T}=P$;\qquad $P^{2}=P$
+	
+	\textbf{投影的目的}
+	
+	书接上章,我们说到在实际问题中方程组不一定有解,针对这个问题我们看方程组$AX=b$,$AX$在矩阵$A$的列空间内,向量$b$不在$A$列空间内时方程组无解,为了解决这个问题,我们将向量$b$进行微调,找到向量$b$在矩阵$A$列空间上的投影向量$p$,方程$AX=p$一定有解.这就是我们提出投影的目的,寻找到最优解$\hat{X}$.
+	
+	假设向量$A$的列空间是2维子空间,$A$的列空间的两个基为$a_{1},a_{2}$,\quad $A=\left[\begin{array}{cc}
+		a_{1}&a_{2}
+	\end{array}\right]$.\quad 设向量$b$在矩阵$A$的列空间的投影为$p=x_{1}a_{1}+x_{2}a_{2}$,\ $\hat{X}=\left[\begin{array}{c}
+	x_{1}\\x_{2}
+\end{array}\right]$是方程$A\hat{X}=p$的解.我们需要求出解$\hat{X}$,我们由$(b-p)\perp C(A)$得到:
+	\begin{equation}
+		\left[\begin{array}{c}
+			a_{1}^{T}\\a_{2}^{T}
+		\end{array}\right](b-A\hat{X})=\left[\begin{array}{c}
+		0\\0
+	\end{array}\right]\Leftrightarrow A^{T}(b-A\hat{X})=\textbf{0}
+	\end{equation}
+	后面的式子是矩阵形式,我们进一步可以得到$A^{T}A\hat{X}=A^{T}b$,最终解得$\hat{X}=(A^{T}A)^{-1}A^{T}b$.
+	
+	我们还知道投影$p=A\hat{X}=A(A^{T}A)^{-1}A^{T}b$,\ $p=Pb$;\  因此我们得到投影矩阵:$$P=A(A^{T}A)^{-1}A^{T}$$
+	当$A$为1维时,$(A^{T}A)^{-1}=\frac{1}{A^{T}A}=\frac{1}{a^{T}a}\qquad P=\frac{aa^{T}}{a^{T}a}$,也满足上式.
+	
+	\textbf{一般投影矩阵的性质}
+	
+	1.一般形式\ $P=A(A^{T}A)^{-1}A^{T}$
+	
+	2.$P^{T}=P$
+	
+	3.$P^{2}=P$
+	
+	\textbf{总结}
+	
+	我们知道投影矩阵的用途和用法了,它出现在当方程组方程数很多时,有许多错误的数据,我们需要找到一个近似的最优解,用投影矩阵来模拟出最优的右侧向量$b$.\textbf{其实这就是线性回归的回归方程的求解原理}.
+	\chapter{投影矩阵和最小二乘}
+	\textbf{投影矩阵}
+	$P=A(A^{T}A)^{-1}A^{T}$是矩阵$A$的投影矩阵,存在向量$b$在矩阵$A$中的投影$Pb$:
+	
+	\textit{If}\quad $b \in C(A),\quad Pb=b$;\qquad \textit{If}\quad $b \perp C(A),\quad Pb=\textbf{0}$.   
+	
+	\textbf{最小二乘法}
+	
+	 存在数据$(x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3})...(x_{n},y_{n})$,求线性回归方程$y=C+Dx$.
+	 
+	 我们得到方程组$AX=b$,\quad 其中$A=\left[\begin{array}{cc}
+	 	1&x_{1}\\1&x_{2}\\...&...\\1&x_{n}
+	 \end{array}\right]$,\quad $X=\left[\begin{array}{c}
+	 C\\D
+ \end{array}\right]$,\quad $b=\left[\begin{array}{c}
+ y_{1}\\y_{2}\\...\\y_{n}
+\end{array}\right]$;\quad 显然当这$n$个点不共线的时候,方程组是无解的,我们需要找到一条最近似的回归直线,满足差距最小.我们假设每个点与直线上对应点的差距为$e_{i}$,我们的目的是使得$e_{1}^{2}+e_{2}^{2}+...+e_{n}^{2}$最小,假设向量$e=\left[\begin{array}{c}
+e_{1}\\e_{2}\\...\\e_{n}
+\end{array}\right]$,\quad 直线上对应点的纵坐标为$p=\left[\begin{array}{c}
+p_{1}\\p_{2}\\...\\p_{n}
+\end{array}\right]$,\quad 我们有$e=b-p$,$e$就是误差.我们的目的就是找出最优解$\hat{X}=\left[\begin{array}{c}
+\hat{C}\\\hat{D}
+\end{array}\right]$和近似向量$p$.
+
+上一章我们提到投影矩阵$P=A(A^{T}A)^{-1}A^{T}$,向量$p$是向量$b$在矩阵$A$上的投影,因此:
+\begin{equation}\left\{\begin{array}{c}
+	p=Pb\\A\hat{X}=p\\P=A(A^{T}A)^{-1}A^{T}
+\end{array}\right.\end{equation}
+由此方程可以解出两个未知量$\hat{X}$和$p$.
+
+\textbf{注}:矩阵$A$列向量线性无关,则$A^{T}A$一定可逆.
+\begin{proof}
+	若想证明$A^{T}A$可逆,我们只需证明$A^{T}AX=0$的零空间只有\textbf{0}
+	
+	我们来看方程$A^{T}AX=0$,方程左右两端同时左乘$X^{T}$,我们得到方程:
+	$$X^{T}A^{T}AX=0\Leftrightarrow (AX)^{T}(AX)=0\Leftrightarrow AX=0$$
+	因此我们可以得到方程$A^{T}AX=0$的解和方程$AX=0$相同,矩阵$A$列向量线性无关,$A$的零空间只有\textbf{0},所以$A^{T}AX=0$的零空间只有\textbf{0}.
+\end{proof}	 
+	\chapter{正交矩阵和$Schmidt$正交化}
+	\textbf{标准正交向量组}
+	
+	现有一组向量$q_{1},q_{2},q_{3}...q_{n}$,满足以下关系时,我们称$q_{1},q_{2},q_{3}...q_{n}$为一组标准正交向量组.
+	$$q_{i}q_{j}=\quad \left\{\begin{array}{c}
+		0 \quad if\quad  i\neq j\\1\quad if\quad  i=j
+	\end{array}\right.$$
+
+	\textbf{正交基}
+	
+	向量空间$S$的一组基,这组基满足是标准正交向量组.
+	
+	\hspace{\fill}\
+	
+	\textbf{正交矩阵和标准正交矩阵}
+	
+	1.假设矩阵$Q$的列向量为标准正交向量组,我们有$Q^{T}Q=I$,我们称$Q$为正交矩阵,并且我们有$Q^{T}=Q^{-1}$,任意置换矩阵都是正交矩阵.
+	
+	2.假设矩阵$Q$的列向量为正交向量组,我们有$Q^{T}Q=D$,其中$D$为对角矩阵.
+	
+	\hspace{\fill}\
+	
+	\textbf{正交矩阵和投影矩阵}
+	
+	我们在第14章中提到向量投影到矩阵空间中投影矩阵$P=A(A^{T}A)^{-1}A^{T}$,我们换一个角度看,假设矩阵$Q$的列空间和矩阵$A$的列空间相同,那么投影矩阵$P=Q(Q^{T}Q)^{-1}Q^{T}$,我们令矩阵$Q$的列向量为矩阵$A$列空间的一组标准正交基,$Q$是正交矩阵,$P=QQ^{T}$.
+	
+	\hspace{\fill}\
+	
+	\textbf{$Graham-Schmidt$正交化法}
+	
+	对于矩阵$A$,我们要想得到正交矩阵,必须要让列向量成为标准正交向量组.我们先假设矩阵$A$列空间有一组基$\alpha_{1},\alpha_{2},...\alpha_{n}$,重新求得的正交向量组为$\beta_{1},\beta_{2},...\beta_{n}$,我们有标准正交向量组$q_{1}=\frac{\beta_{1}}{|\beta_{1}|},q_{2}=\frac{\beta_{2}}{|\beta_{2}|},...q_{n}=\frac{\beta_{n}}{|\beta_{n}|}$,我们可以得到$\beta_{1}=\alpha_{1},\beta_{2}=\alpha_{2}-\frac{(\alpha_{2},\beta_{1})}{(\beta_{1},\beta_{1})}\beta_{1}$......我们依次可以求得矩阵$A$的$n$个标准正交基(向量减去前面几个基向量方向的投影):$\beta_{n}=\alpha_{n}-\sum_{i=1}^{n}\frac{(\alpha_{n},\beta_{i})}{(\beta_{i},\beta_{i})}\beta_{i}$.
+	
+	我们可以得到以下的关系式:
+	$$A=QR,R\ is\ upper\ triangular $$
+	\begin{proof}
+		假设$A=\left[\begin{array}{ccccc}
+			a_{1}&a_{2}&...&a_{n}
+		\end{array}\right]$,$Q=\left[\begin{array}{cccc}
+		q_{1}&q_{2}&...&q_{n}\end{array}\right]$,那么$R=\left[\begin{array}{cccc}
+			a_{1}^{T}q_{1}&a_{2}^{T}q_{1}&......&a_{n}^{T}q_{1}\\a_{1}^{T}q_{2}&a_{2}^{T}q_{2}&......&a_{n}^{T}q_{2}\\......&......&......&......\\a_{1}^{T}q_{n}&a_{2}^{T}q_{n}&......&a_{n}^{T}q_{n}
+		\end{array}\right]$
+	
+	我们由正交矩阵知道:$$a_{i}^{T}q_{j}=0,\ \textit{if}\ i<j$$
+	由此我们知道$R$是上三角型矩阵.
+	\end{proof}
+	\chapter{行列式及其性质}
+	\textbf{行列式}
+	
+	假设方阵$A$,我们将$A$的行列式记作:$det\ A=|A|$,我们有以下结论:
+	
+	1.矩阵可逆等价于行列式非零,还等价于$rank(A)\neq 0$,用数学表达式写下来就是:$$A^{-1}\ is\   exists \Leftrightarrow det\ A\neq 0 \Leftrightarrow rank(A)=n$$
+	
+	2.\textbf{交换行列式的两行,行列式的值的符号会相反.}
+	
+	3.$det I=1$
+	
+	4.$det P=1\ or -1$,$P$表示置换矩阵.
+	
+	5.行列式中如果两行相等,那么行列式的值为0.
+	
+	6.高斯消元不影响行列式的值,即$det\ A=det\ U$
+	
+	7.行列式有一行为0,行列式的值为0.
+	
+	8.$U=\left[\begin{array}{cccc}
+		d_{1}&a&...&b\\0&d_{2}&...&c\\...&...&...&...\\0&0&...&d_{n}
+	\end{array}\right]=d_{1}d_{2}d_{3}...d_{n}$.
+
+	9.$det\ A=0$,当且仅当$A$是奇异矩阵.
+	
+	10.$A,B$都是方阵,$det\ AB=(det\ A)(det\ B)\Rightarrow det\ A^{-1}=\frac{1}{det\ A}$;\ $det\ A^{2}=(det\ A)^{2}=|A|^{2}$;\ $det\ mA=m^{n}det\ A=m^{n}|A|$.
+	
+	11.$det\ A^{T}=det\ A$.
+	
+	12.$det\ A^{-1}=|A|^{n-1}$
+	
+	\chapter{行列式公式和代数余子式}
+	\textbf{行列式公式}
+	
+	从每一行中取:$det\ A=\sum (-1)^{i+j+...+k}(a_{1i}a_{2j}...a_{nk})$,$i,j,...k$是$1,2,...n$的排列.
+	
+	从每一列中取:$det\ A=\sum (-1)^{i+j+...+k}(a_{i1}a_{j2}...a_{kn})$,$i,j,...k$是$1,2,...n$的排列.
+	
+	\textbf{代数余子式}
+	
+	$A$是$n*n$型的行列式,把$A$按照一行展开得到行列式的值,$det\ A=\sum_{j=1}^{n}a_{ij}C_{ij}$.\ 其中$C_{ij}$表示的是行列式中$a_{ij}$的代数余子式;\ $C_{ij}=(-1)^{i+j}det\ |(n-1)\ matrix\ (with\ row\ i\ col\ j\ erased)|$.
+	
+	其实我们刚刚已经发现了两种求解行列式的方法,分别是代数余子式和行列式公式.
+	
+	\textbf{范德蒙行列式}
+	
+	
+	\chapter{Cramer法则和逆矩阵}
+	假设$A$是$n*n$方阵,且假设$A^{-1}$存在,我们可以利用高斯-若尔当消元法求解,我们知道这是一种算法,现在我们利用行列式求得逆矩阵的公式:
+	\begin{equation}
+		A^{-1}=\frac{1}{det\ A}C^{T}
+	\end{equation}
+	$C$是$A$的伴随矩阵,$c_{ij}=a_{ij}A_{ij}$,其中$A_{ij}=(-1)^{i+j}det\ |(n-1)\ matrix\ (with\ row\ i\ col\ j\ erased)|$
+	\begin{proof}
+		假设这个公式成立,我们只需要证明:$AA^{-1}=I\Leftrightarrow AC^{T}=(det\ A)I$
+		
+		$AC^{T}=\left[\begin{array}{cccc}
+		a_{11}&a_{12}&...&a_{1n}\\a_{21}&a_{22}&...&a_{2n}\\...&...&...&...\\a_{n1}&a_{n2}&...&a_{nn}
+		\end{array}\right]$\ $\left[\begin{array}{cccc}
+		c_{11}&c_{21}&...&c_{n1}\\c_{12}&c_{22}&...&c_{n2}\\...&...&...&...\\c_{1n}&c_{2n}&...&c_{nn}
+	\end{array}\right]$
+	由公式(19.1)我们知道$AC^{T}$的对角线上的元素都为$det\ A$,非对角线上的元素表示的是行列式$A$中第$i$行与第$j$行每个元素的代数余子式的乘积之和,我们发现第$i$行与第$j$行的代数余子式之积可以理解为将第$j$行换成第$i$行的元素,然后将行列式按照第$j$行展开,由于行列式中由两行相同,行列式的值为0,因此$AC^{T}$中非对角线的元素全部为0.
+	
+	因此$AC^{T}=(det\ A)I$得证.
+	
+	\end{proof}
+	\textbf{$Cramer$法则}
+	
+	假设矩阵$A$是可逆矩阵,对于方程$AX=b$,我们知道这个方程的解为$X=A^{-1}B$,由公式(19.1),我们知道$X=\frac{1}{det\ A}C^{T}b\Leftrightarrow X=\frac{1}{det\ A}(b_{1}\left[\begin{array}{c}
+		c_{11}\\c_{12}\\...\\c_{1n}
+	\end{array}\right]+b_{2}\left[\begin{array}{c}
+	c_{21}\\c_{22}\\...\\c_{2n}
+\end{array}\right]+...+b_{n}\left[\begin{array}{c}
+c_{n1}\\c_{n2}\\...\\c_{nn}
+\end{array}\right])$,我们知道$X$的分量$X_{1}=\frac{1}{det\ A}(b_{1}c_{11}+b_{2}c_{21}+...+b_{n}c_{n1})=\frac{det\ B_{1}}{det\ A}$,\ 我们可以得到$X=\left[\begin{array}{c}
+\frac{det\ B_{1}}{det\ A}\\\frac{det\ B_{2}}{det\ A}\\...\\\frac{det\ B_{n}}{det\ A}
+\end{array}\right]$;\ 
+其中$B_{i}$是将行列式的第$i$列换成向量$b$.
+
+	\textbf{体积}
+	假设三维空间内存在$n_{1},n_{2},n_{3}$三个向量,这三个向量所构成的空间平行六面体的体积$V=det\ A,A=\left|\begin{array}{c}
+		n_{1}\\n_{2}\\n_{3}
+	\end{array}\right|$.
+	\chapter{特殊矩阵总结}
+	1.对角矩阵:$A=diag\left\lbrace d_{1},d_{2}...,d_{n}\right\rbrace $,除了主对角线上的原宿其余元素都为0.
+	
+	2.上三角和下三角矩阵
+	
+	3.基本矩阵:我们将$E_{ij}$成为基本矩阵,这个矩阵是只有$(i,j)$元为1其余为0的$n*n$矩阵.
+	
+	4.由单位矩阵经过一次初等变换得到的矩阵被称为初等矩阵.
+	
+	5.可逆矩阵:满足$AB=I$的方阵互称可逆矩阵.
+	
+	6.正交矩阵:满足$AA^{T}=I$的方阵称为正交矩阵.
+	
+	7.相似矩阵:$A=U^{-1}BU$,$A~B$,$A,B$都是n阶方阵.
+	
+	8.幂零矩阵:满足$A^{t}=0$,$t_{min}$被称为幂零指数.
+	\chapter{特征值和特征向量}
+	
+	假设存在方阵$A$,我们有$AX=\lambda X$,我们称$\lambda$为特征值,$X$为特征向量.那么我们该如何求解特征值和特征向量呢？
+	
+	$AX=\lambda X\Leftrightarrow (\lambda I-A)X=0$,我们只需要保证对于方阵$(\lambda I-A)$零空间内存在非零向量即可;我们得出$rank(\lambda I-A)\neq n\Leftrightarrow det\ (\lambda I-A)=0$,我们解出$\lambda$是方阵$A$的特征值,而方程$(\lambda I-A)X=0$对应特征值的特征向量.
+	
+	假设$A=\left[\begin{array}{cccc}
+		a_{11}&a_{12}&...&a_{1n}\\a_{21}&a_{22}&...&a_{2n}\\...&...&...&...\\a_{n1}&a_{n2}&...&a_{nn}
+	\end{array}\right]$,那么$det\ (\lambda I-A)=\left|\begin{array}{cccc}
+	\lambda-a_{11}&-a_{12}&...&-a_{1n}\\-a_{21}&\lambda-a_{22}&...&-a_{2n}\\...&...&...&...\\-a_{n1}&-a_{n2}&...&\lambda-a_{nn}
+\end{array}\right|$,最后化简得到的是一个关于$\lambda$的多项式$f(\lambda)$:
+$$f(\lambda)=\lambda^{n}+c_{1}\lambda^{n-1}+c_{2}\lambda^{n-2}+...+c_{0}$$
+
+我们知道特征值就是方程$f(\lambda)=0$的解,由根与系数的关系:
+$$\left\{\begin{array}{c}
+	\sum\limits_{i=1}^{n}\lambda_{i}=trace(A)\\ \prod\limits_{i=1}^{n}\lambda_{i}=(-1)^{n}det\ A
+\end{array}\right.$$
+	
+	\textbf{注意}
+	
+	1.$n*n$的矩阵$A$可对角化的等价条件为$A$有$n$个线性无关的特征向量.
+	
+	我们从特征向量的定义可得:
+	$$\left\{\begin{array}{c}
+		Ax_{1}=\lambda_{1}x_{1}\\Ax_{2}=\lambda_{2}x_{2}\\......\\Ax_{n}=\lambda_{n}x_{n}
+	\end{array}\right.\Rightarrow AX=X*diag(\lambda_{1},\lambda_{2}...\lambda_{n}),X=\left[\begin{array}{cccc}
+	x_{1}\\x_{2}\\...\\x_{n}
+\end{array}\right]$$
+当矩阵$A$有n个线性无关的特征向量时,矩阵$X$是可逆矩阵,所以就有了:
+$$\left\{\begin{array}{c}
+	X^{-1}AX=diag(\lambda_{1},\lambda_{2}...\lambda_{n})\\A=X*diag(\lambda_{1},\lambda_{2}...\lambda_{n})*X^{-1}
+\end{array}\right.$$
+	2.假设$AX=\lambda X$的特征值为$\lambda_{1},\lambda_{2}...\lambda_{n}$,那么$(A+mI)X=\alpha X$的特征值$\alpha_{1},\alpha_{2}...\alpha_{n}$满足$\alpha_{i}=m+\lambda_{i},\ i=1,2...n$,特征向量不变.
+	\chapter{对角化和矩阵幂}
+	在上一章中,我们知道如何去求解一个方阵的特征值和特征向量,那么我们求解这些有什么用呢？
+	
+	假设方阵$A$有n个线性无关的特征向量,那么将这些特征向量作为列向量组成新的方阵$S$,我们发现$AS=A\left[\begin{array}{cccc}
+		X_{1}&X_{2}&...&X_{n}
+	\end{array}\right]\Leftrightarrow \ \left[\begin{array}{cccc}
+	AX_{1}&AX_{2}&...&AX_{n}
+\end{array}\right]$;\ 由特征向量的性质得:$AX_{i}=\lambda_{i}X_{i}$,\ 我们得到$AS=\left[\begin{array}{cccc}
+\lambda_{1}X_{1}&\lambda_{2}X_{2}&...&\lambda_{n}X_{n}
+\end{array}\right]\Leftrightarrow\ \left[\begin{array}{cccc}
+X_{1}&X_{2}&...&X_{n}
+\end{array}\right]\ \left[\begin{array}{cccc}
+\lambda_{1}&0&...&0\\0&\lambda_{2}&...&0\\...&...&...&...\\0&0&0&\lambda_{n}
+\end{array}\right]$,\ 我们称$\left[\begin{array}{cccc}
+\lambda_{1}&0&...&0\\0&\lambda_{2}&...&0\\...&...&...&...\\0&0&0&\lambda_{n}
+\end{array}\right]$为对角矩阵,记作$D=diag(\lambda_{1},\lambda_{2}...,\lambda_{n})$,由此我们得到以下两个公式:
+\begin{equation}
+	\left\{\begin{array}{c}
+		S^{-1}AS=D\\
+		A=SDS^{-1}
+	\end{array}\right.
+\end{equation}
+我们由公式(21.1)知道:$A^{2}=SD^{2}S^{-1};\ A^{n}=SD^{n}S^{-1}$,这也是我们求特征向量和对角化矩阵的目的,当求方阵的高阶幂时,可以大大简化计算量,因为$D^{n}=diag(\lambda_{1}^{n},\lambda_{2}^{n}...,\lambda_{n}^{n})$.
+
+我们发现:$if\ all\ |\lambda_{i}|<1,\ when\ k\rightarrow +\infty,\ A^{k}\rightarrow 0$.
+
+\textbf{矩阵可对角化的条件}
+
+矩阵有$n$个线性无关的特征向量.
+	
+	\textbf{实际应用:斐波那契数列}
+	
+	一阶线性微分方程$\Rightarrow$一阶向量方程
+	
+    1.假设向量$u_{k+1}=Au_{k}$,已知$u_{0}$,求$u_{100}$
+    
+    我们发现$u_{k}=A^{k}u_{0}$,关于矩阵的幂,我们用特征值和特征向量将矩阵对角化,我们首先求出矩阵的特征值和特征向量,特征向量构成矩阵$S$,$A=S^{-1}DS$,$D$是矩阵$A$对角化的结果,对角线上元素是特征值,我们有$u^{k}=SD^{k}S^{-1}u_{0}$,$u_{0}=Sv$,其中$v=\left[\begin{array}{c}
+    	c_{1}\\c_{2}\\...\\c_{n}
+    \end{array}\right]$,因此$u_{k}=SD^{k}V=S\left[\begin{array}{c}
+    c_{1}\lambda_{1}^{k}\\c_{2}\lambda_{2}^{k}\\...\\c_{n}\lambda_{n}^{k}
+\end{array}\right]$.
+
+我们发现$u_{k}=C_{1}\lambda_{1}^{k}+C_{2}\lambda_{2}^{k}+...+C_{n}\lambda_{n}^{k}$,其中$C_{i}$都是列向量,我们通过首项$u_{0}$可以解出,我们可以得到通项公式.
+
+
+    2.设$F_{0}=0,F_{1}=1,F_{k+2}=F_{k+1}+F_{k}$,求$F_{100}$
+    
+    设$u_{k}=\left[\begin{array}{c}
+    	F_{k+1}\\F_{k}
+    \end{array}\right]$,$u_{k+1}=\left[\begin{array}{c}
+    F_{k+2}\\F_{k+1}
+\end{array}\right]$,$u_{k+1}=Au_{k},A=\left[\begin{array}{cc}
+1&1\\1&0
+\end{array}\right]$;我们解出矩阵$A$的特征值:$\lambda_{1}=\frac{1+\sqrt{5}}{2},\ \lambda_{2}=\frac{1-\sqrt{5}}{2}$,根据上题,我们发现:$u_{k}=C_{1}\lambda_{1}^{k}+C_{2}\lambda_{2}^{k}$,又因为$u_{0}=\left[\begin{array}{c}
+1\\0
+\end{array}\right]$.
+
+我们解得通项公式$F_{k}=\frac{1}{\sqrt{5}}((\frac{1+\sqrt{5}}{2})^{k}+(\frac{1-\sqrt{5}}{2})^{k})$,并且$C_{1}=\frac{1}{\sqrt{5}}\left[\begin{array}{c}
+	1\\\frac{2}{1+\sqrt{5}}
+\end{array}\right],C_{2}=\frac{1}{\sqrt{5}}\left[\begin{array}{c}
+-1\\\frac{2}{1-\sqrt{5}}
+\end{array}\right]$.
+	\chapter{微分方程$exp(At)$}
+	\textbf{一阶微分方程组}
+	
+	我们先来看一个例子:
+	\begin{equation}
+		\left\{\begin{array}{c}
+		\frac{\mathrm{d}u_{1}}{\mathrm{d}t}=-u_{1}+2u_{2}\\ \frac{\mathrm{d}u_{2}}{\mathrm{d}t}=u_{1}-2u_{2}
+		\end{array}\right.
+	\end{equation}
+	我们有$u(0)=\left[\begin{array}{c}
+		1\\0
+	\end{array}\right]$,$A=\left[\begin{array}{cc}
+	-1&2\\1&-2
+\end{array}\right]$,我们发现$A$的两个特征值$\lambda_{1}=0;\lambda_{2}=-3$,两个特征值对应的特征向量分别为$x_{1}=\left[\begin{array}{c}
+2\\1
+\end{array}\right];x_{2}=\left[\begin{array}{c}
+-1\\1
+\end{array}\right]$.
+
+原方程组的通解为$u(t)=c_{1}\textit{e}^{\lambda_{1} t}x_{1}+c_{2}\textit{e}^{\lambda_{2} t}x_{2}\Leftrightarrow u(t)=\left[\begin{array}{c}
+	2c_{1}+c_{3}\textit{e}^{-3t}\\c_{1}-\textit{e}^{-3t}
+\end{array}\right]$
+
+当$t=0$时,$u(0)=\left[\begin{array}{c}
+	2c_{1}+c_{2}\\c_{1}-c_{2}
+\end{array}\right]=\left[\begin{array}{c}
+1\\0
+\end{array}\right]\Rightarrow \left\{\begin{array}{c}
+	c_{1}=\frac{1}{3}\\c_{2}=\frac{1}{3}
+\end{array}\right.$.
+
+$u(+\infty)=\left[\begin{array}{c}
+	\frac{2}{3}\\\frac{1}{3}
+\end{array}\right]$,这个例子最后是稳定的,但是并不是所有的都是稳定的,我们发现:
+
+1.当所有的特征值$Re\ \lambda_{i}<0$,$t\rightarrow +\infty ,\ u(t)\rightarrow 0$.
+
+2.当$\lambda_{1}=0,others\ Re\ \lambda_{i}<0$,最后会形成一个稳态,比如这个例子.
+
+3.当$\forall \lambda_{i}>0 $,$t\rightarrow +\infty ,\ u(t)\rightarrow +\infty$.
+
+4.当矩阵$A$满足$\left\{\begin{array}{c}
+	-trace(A)<0\\det\ A>0
+\end{array}\right.$,$u(t)$是稳定的.
+
+5.$\frac{\mathrm{d}u}{\mathrm{d}t}=Au$,设$u=SV$,$S=\left[\begin{array}{cccc}
+	x_{1}&x_{2}&...&x_{n}
+\end{array}\right]$,$V(t)=\textit{e}^{Dt}V(0)$;$\frac{\mathrm{d}u}{\mathrm{d}t}=Au\Leftrightarrow S\frac{\mathrm{d}v}{\mathrm{d}t}=ASV \Rightarrow S^{-1}S\frac{\mathrm{d}v}{\mathrm{d}t}=S^{-1}ASV=DV$
+
+即:$u(t)=SV(t)=S\textit{e}^{Dt}V(0)=S\textit{e}^{Dt}S^{-1}u(0)=\textit{e}^{At}u(0)$
+
+我们只需要证明:$S\textit{e}^{Dt}S^{-1}=\textit{e}^{At}$
+
+我们利用泰勒展开式:$\textit{e}^{At}=I+\frac{(At)^{2}}{2}+\frac{(At)^{3}}{6}+...+\frac{(At)^{n}}{n!}+...\Rightarrow \textit{e}^{At}=SS^{-1}+\frac{S(Dt)^{2}S^{-1}}{2}+\frac{S(Dt)^{3}S^{-1}}{6}+...+\frac{S(Dt)^{n}S^{-1}}{n!}+...\Rightarrow \textit{e}^{At}=S(I+\frac{(Dt)^{2}}{2}+\frac{(Dt)^{3}}{6}+...+\frac{(Dt)^{n}}{n!}+...)S^{-1}\Rightarrow \textit{e}^{At}=S\textit{e}^{Dt}S^{-1}$
+	
+	\textbf{二阶微分方程}
+	
+	二阶微分方程$\Rightarrow$一阶向量方程
+	
+	比如:$\ddot{y}(x)+b\dot{y}(x)+ky=0$
+	
+	我们设$F_{k+1}=\left[\begin{array}{c}
+		\ddot{y}(x)\\\dot{y}(x)
+	\end{array}\right],F_{k}=\left[\begin{array}{c}
+	\dot{y}(x)\\y(x)
+\end{array}\right]$,$F_{k+1}=AF_{k},A=\left[\begin{array}{cc}
+-b&-k\\0&1
+\end{array}\right]$,可以用解一阶线性微分方程组的方法来解这个方程组.
+	
+	\chapter{马尔可夫矩阵和傅里叶级数}
+	\textbf{Markov\ Matrix}
+	
+	矩阵$A$满足以下两个性质,我们称矩阵$A$为$Markov\ Martix$
+	
+	1.$\forall a_{ij}\in \ A,\ a_{ij}\geq0$
+	
+	2.$\forall j\in n,\sum col_{j}=1$
+	
+	\textbf{性质}
+	
+	1.矩阵$A$一定有一个特征值为1,其余的特征值$|\lambda_{i}|\le1$.
+	
+	2.若$A$是$Markov\ Martix$,$A^{k}$也是$Markov\ Martix$.
+	
+	3.对于第一个特征向量$X_{1}$中$x_{i}\ge 0$.
+	
+	4.矩阵$A$和矩阵$A^{T}$有相同的特征值.
+	
+	\textbf{注意}:关于性质1的证明,我们可以发现矩阵$A-I$行向量之和为零向量,所以矩阵$A-I$是奇异矩阵,也就是说$rank(A-I)<n\Rightarrow |A-I|=0$,0是矩阵$A-I$的一个特征值,所以矩阵$A$一定有一个特征值为1.
+	
+	$Markov\ Martix$\textbf{实际应用:人口迁移问题}
+	
+	假设有两个小镇$A,B$,小镇$A$每年向小镇$B$的迁移率为$\alpha$,留在小镇$A$的比率为$1-\alpha$;小镇$B$每年向小镇$A$的迁移率为$\beta$,留在小镇$B$的比率为$1-\beta$,初始两个小镇人数为$a,b$,求$k$年后两个小镇的人数？
+	
+	设$U_{k}=\left[\begin{array}{c}
+		a_{k}\\b_{k}
+	\end{array}\right],U_{0}=\left[\begin{array}{c}
+	a\\b
+\end{array}\right]$,表示$k$年后的$A,B$小镇人数,$U_{k+1}=AU_{k},A=\left[\begin{array}{cc}
+1-\alpha&\beta\\\alpha&1-\beta
+\end{array}\right]$,所以$U_{k}=A^{k}U_{0}$.
+
+我们求出矩阵$A$的特征值$\lambda_{1},\lambda_{2}$,$U_{k}=C_{1}\lambda_{1}^{k}+C_{2}\lambda_{2}^{k}$,其中$C_{1},C_{2}$根据$U_{0}$解出.
+
+\hspace{\fill}\
+
+\textbf{傅里叶级数}
+
+假设$n$维空间内存在一组标准正交基$q_{1},q_{2}...,q_{n}$,空间中任意的一个向量$V$都可以表示为:
+\begin{equation}
+V=x_{1}q_{1}+x_{2}q_{2}+...+x_{n}q_{n}\end{equation}
+等式两边分别依次左乘$q_{i}^{T}$,可以得到$x_{i}=q_{i}^{T}V\Rightarrow X=Q^{T}V$,根据$(23.1)$式,我们发现$V=QX\Rightarrow X=Q^{-1}V$,由此得到下面的两个式子:
+$$\left\{\begin{array}{c}
+	X=Q^{T}V\\X=Q^{-1}V
+\end{array}\right.$$
+我们得出:$Q^{T}=Q^{T}$,上面的这些,尤其是$(23.1)$式是傅里叶级数建立的基础.首先类比于向量的内积,我们发现两个函数的内积$f*g=f^{-1}g$,可以将函数看作是无穷维的向量，那么这个内积就等价于每一个点函数值乘积之和$\sum_{min}^{max}f*g$，所以$f*g=f^{-1}g=\int_{min}^{max}f(x)g(x)$.
+
+对于周期函数$f(x)$,我们可以看作无穷维空间中的一个向量,这个空间有一组标准正交基$\sin(ix),\cos(ix),i\in {1,2,3...n}$.周期函数的傅里叶展开式如下:
+\begin{equation}
+	f(x)=a_{0}+\sum_{i=1}^{n}a_{i}\cos(ix)+\sum_{i=1}^{n}b_{i}\sin(ix)
+\end{equation}
+对比$(23.1)$和$(23.2)$两式,我们可以用同样的方法求出对应基的系数,方程两边同时在一个周期上求定积分可得$\int_{0}^{T}f(x)dx=\frac{a_{0}T}{2}$;方程两边同时乘以$\sin(ix)$后在一个周期上求定积分可得:$\int_{0}^{T}f(x)\sin(ix)dx=\int_{0}^{T}a_{0}\sin(ix)dx+\int_{0}^{T}b_{i}(\sin(ix))^{2}dx$;方程两边同时乘以$\cos(ix)$后在一个周期上求定积分可得:$\int_{0}^{T}f(x)\cos(ix)dx=\int_{0}^{T}a_{0}\cos(ix)dx+\int_{0}^{T}a_{i}(\cos(ix))^{2}dx$.
+
+由此我们得到各个基前面的线性组合系数:
+\begin{equation}
+	\left\{\begin{array}{c}
+		\int_{0}^{T}f(x)dx=\frac{a_{0}T}{2}\\\int_{0}^{T}f(x)\sin(ix)dx=\int_{0}^{T}a_{0}\sin(ix)dx+\int_{0}^{T}b_{i}(\sin(ix))^{2}dx\\\int_{0}^{T}f(x)\cos(ix)dx=\int_{0}^{T}a_{0}\cos(ix)dx+\int_{0}^{T}a_{i}(\cos(ix))^{2}dx
+	\end{array}\right.
+\end{equation}
+假设$T=2\pi$,将公式$(23.2)$化简得到下式:
+\begin{equation}
+	\left\{\begin{array}{c}
+		a_{n}=\frac{1}{\pi}\int_{0}^{2\pi}f(x)cos(nx)dx,\ n=0,1,2...\\b_{n}=\frac{1}{\pi}\int_{0}^{2\pi}f(x)sin(nx)dx,\ n=1,2...
+	\end{array}\right.
+\end{equation}
+	\part{正定矩阵及其应用}
+	\chapter{对称矩阵及其正定性}
+	假设矩阵$A$是实对称矩阵,我们有以下两个推论:
+	
+	1.矩阵$A$的特征值都是实数,特征值的乘积等于主元乘积.
+	
+	2.矩阵$A$的特征向量可以找出一组是正交的.
+	
+	对于实对称矩阵,我们将其对角化可以得到$A=SDS^{-1}$,我们由性质2可以得到$A=QDQ^{-1}$,又因为$Q$是正交矩阵,$QQ^{T}=I$,因此$Q^{T}=Q^{-1}\Rightarrow A=QDQ^{T}$
+	
+	关于性质1的证明,我们首先由$AX=\lambda X$,这个方程两边同时取共轭得到$\overline{A}\ \overline{X}=\overline{\lambda}\ \overline{X}$,因为矩阵$A$是实对称矩阵,我们有$\overline{A}=A$,因此我们得到:$A\overline{X}=\overline{\lambda}\ \overline{X}\Rightarrow \overline{X}^{T}A=\overline{X}^{T}\overline{\lambda}$,我们得到如下的表达式:
+	\begin{equation}
+		\left\{\begin{array}{c}
+			AX=\lambda X\\\overline{X}^{T}A=\overline{\lambda}\  \overline{X}^{T}
+		\end{array}\right.\Rightarrow \left\{\begin{array}{c}
+		\overline{X}^{T}AX=\lambda \overline{X}^{T}X\\\overline{X}^{T}AX=\overline{\lambda}\  \overline{X}^{T}X
+	\end{array}\right.
+	\end{equation}
+	由$(24.1)$得$\lambda=\overline{\lambda}$,$\lambda$是实数.
+	
+	\textbf{注意}:假设向量$A$是复数向量,$|A|=\overline{A}^{T}A$;假设矩阵$A$是复数矩阵,我们要求矩阵$A$特征值都为实数且特征向量正交,必须满足$A=\overline{A}^{T}$.
+	
+	\hspace{\fill}\
+	
+	\textbf{对称矩阵分解}
+	
+	假设矩阵$A$是对称矩阵,那么$A=QDQ^{-1}\Rightarrow A=\sum_{i=1}^{n}\lambda_{i}q_{i}q_{i}^{T}$,在投影矩阵中我们知道对于任意一个矩阵$q$,其投影矩阵为$P=\frac{qq^{T}}{q^{T}q}$,特殊的当$q$为单位列向量时,$P=qq^{T}$,因此对称矩阵可以分解为$n$个投影矩阵的线性组合.
+	
+	\hspace{\fill}\
+	
+	\textbf{对称矩阵正定性判定}
+	
+	1.所有的特征值为正:$\lambda_{i}>0$.
+	
+	2.所有的主元$x_{i}>0$.
+	
+	3.所有的顺序主子行列式值都为正.
+	
+	4.对任意非零向量$X$,$X^{T}AX>0$.
+	\chapter{复数矩阵和快速傅里叶变化}
+	\textbf{复数矩阵}
+	
+	假设向量$Z=\left[\begin{array}{c}
+	z_{1}\\z_{2}\\...\\z_{n}
+	\end{array}\right]$是$n$维复空间中的一个向量,即$Z \in\  C^{n}$,我们之前提到过如何求复向量模长的方法:$|Z|=\overline{Z}^{T}Z$,我们将$\overline{Z}^{T}$记作$Z^{H}$,我们就得到了复向量求模长和内积的公式:
+	$$\left\{\begin{array}{c}
+		|X|=X^{H}X,\ X\in C^{n}\\|Y|=Y^{H}Y,\ Y\in C^{n}\\X*Y=X^{H}Y,\ X,Y\ \in C^{n}
+	\end{array}\right.$$
+	同时在实数矩阵中的一些性质在复数矩阵中有一点改变,首先是“对称”,我们将$A^{H}=A$的矩阵$A$称为$Hertmitian$矩阵,也被称为复共轭对称矩阵,具有实对称矩阵的某些性质:特征值都为实数且特征值向量相互正交.
+	
+	其次是正交,复空间中的一组标准正交基$q_{1},q_{2},...q_{n}$满足以下条件:
+	$$q_{i}q_{j}=\left\{\begin{array}{c}
+		0,\ i\neq j\\1,\ i=j
+	\end{array}\right.$$
+	由标准正交基组成的矩阵$Q$满足:$Q^{H}Q=I$
+	
+	\textbf{快速傅里叶变化}
+	
+	傅里叶矩阵是一种非常重要的复数矩阵,而快速傅里叶变化$(FFT)$则是一种十分重要的手段
+
+	$$F_{n}=\frac{1}{\sqrt{n}}\left[\begin{array}{ccccc}
+		1&1&1&...&1\\1&w&w^{2}&...&w^{n-1}\\1&w^{2}&w^{4}&...&w^{2(n-1)}\\...&...&...&...&...\\1&w^{n-1}&w^{2(n-1)}&...&w^{(n-1)^{2}}
+	\end{array}\right],w^{n}=1$$
+	这就是n阶的傅里叶矩阵,我们发现$F_{ij}=w^{i*j},i\in {0,1,2...n-1};\ j\in {0,1,2...n-1}$,矩阵的行和列都从0开始.
+	
+	\textbf{傅里叶矩阵性质}
+	
+	1.矩阵的列向量正交,且列向量为单位向量,我们有$F_{n}^{H}F_{n}=I$
+	
+	2.$w=\textit{e}^{\frac{2\pi}{n}}=\cos(\frac{2\pi}{n})+i\sin(\frac{2\pi}{n})$
+	\chapter{二次型、标准型、规范型和正定二次型}
+	$f(x_{1},x_{2},...x_{n})=\sum_{i=1,j=1}^{n}a_{ij}x_{i}x_{j}$,称为$n$元二次型,然后我们得到一个矩阵$A$,来表示多项式的系数,如此我们有了$f(x_{1},x_{2},...x_{n})=X^{T}AX$.
+	
+	\textbf{定义}
+	
+	1.合同:假设矩阵$A,B$都是n阶方阵,存在可逆矩阵$C$使得$C^{T}AC=B$,我们称$A$与$B$合同.
+	
+	2.二次型等价:假设存在一个可逆矩阵$C$满足$X=CY$,二次型$X^{T}AX$与$Y^{T}BY$等价.这说明二次型等价当且仅当系数矩阵合同.
+	
+	3.标准型:假设二次型$X^{T}AX$等价于一个只有平方项的二次型,那么这个只含平方项的二次型称为$X^{T}AX$的一个标准型(标准型不唯一).
+	
+	4.我们说过实数对称矩阵一定可以对角化,$U^{-1}AU=D,D=diag\left\lbrace \lambda_{1},\lambda_{2},...\lambda_{n}\right\rbrace $,$U$是正交矩阵,$U^{T}AU=D$,矩阵$A$和对角矩阵$D$合同,说明二次型$X^{T}AX$一定等价于一个只含平方项的二次型.特别的,$X=UY$被称为正交替换.
+	
+	5.规范型:我们可以通过非退化线性变换将二次型$X^{T}AX$等价于一个标准型$d_{1}y_{1}^{2}+d_{2}y_{2}^{2}+...+d_{p}y_{p}^{2}-d_{p+1}y_{p+1}^{2}...-d_{r}y_{r}^{2}$,我们再进行一次非线性退化变换得到$z_{1}^{2}+z_{2}^{2}+...+z_{p}^{2}-z_{p+1}^{2}-z_{r}^{2}$,二次型中只含平方项且平方项系数为1,-1,0;这个二次型被称为规范型.
+	
+	6.正负惯性指数:二次型$X^{T}AX$的规范型中系数为正的平方项个数是正惯性指数$p$,系数为负的平方项的个数是负惯性指数$r-p$.
+	
+	7.正定二次型:对于不全为0的自变量,二次型$X^{T}AX$恒正,我们就称之为正定二次型.
+	
+	\textbf{定理}
+	
+	1.惯性定理:n元二次型的规范型是唯一的.
+	
+	2.任意一个n元二次型的系数矩阵$A$是实数对称矩阵都合同与一个主对角线上只有1，-1，0的对角矩阵.
+	
+	3.两个n元二次型等价$\Leftrightarrow$系数矩阵秩相等且正惯性指数相等$\Leftrightarrow$规范型相同$\Leftrightarrow$系数矩阵合同.
+	
+	\chapter{正定矩阵和最小值}
+	\textbf{定义}
+	
+	对于任意非零向量$X$,我们有$X^{T}AX>0$,我们称矩阵$A$为正定矩阵.
+	
+	其实正定矩阵是在对称矩阵中某一些性质较好的矩阵,满足特征值为正数或者主元都大于0或者顺序子行列式都大于0.
+	
+	\textbf{性质}
+	
+	1.正定矩阵是对称矩阵.
+	
+	2.假设$A,B$都是正定矩阵,$(A+B)$也是正定矩阵,因为$X^{T}(A+B)X=X^{T}AX+X^{T}BX>0$.
+	
+	3.矩阵$A$是$m*n$型矩阵,矩阵$A^{T}A$是正定矩阵.$(rank(A)=min(m,n)$
+	
+	关于性质3的证明,我们发现$X^{T}A^{T}AX=(AX)^{T}AX\Rightarrow |AX|^{2}\geq 0$,当$AX$为零向量时成立,$X$为非零向量,只有当$A$的零空间只有零向量时,矩阵$A^{T}A$是正定矩阵.
+	
+	我们接下来还会讲述一些正定矩阵的性质:
+	
+	1.n级实对称矩阵$A$当且仅当矩阵$A$所有的特征值全部大于0时是正定矩阵.
+	
+	2.实对称矩阵$A$正定的充要条件为$A$的所有顺序子行列式全部大于0.
+	
+	
+	\chapter{相似矩阵和若尔当型}
+	\textbf{相似矩阵}
+	
+	假设存在两个$n*n$的矩阵$A,B$,满足$B=M^{-1}AM$,我们就称$B$相似于$A$.有一个很好的例子就是矩阵对角化时:$A=SDS^{-1}\Rightarrow D=S^{-1}AS$,矩阵$A$和$D$相似.
+	
+	\textbf{性质}
+	
+	1.相似矩阵有相同的特征值.
+	
+	关于性质1的证明,我们假设$A~B$,我们有$AX=\lambda X\Rightarrow AMM^{-1}=\lambda X\Rightarrow (M^{-1}AM)(M^{-1}X)=\lambda (M^{-1}X)\Rightarrow B(M^{-1}X)=\lambda(M^{-1}X)$,所以$A,B$有相同的特征向量,假设$x_{i}$是$A$的特征向量,那么$M^{-1}x_{i}$是$B$的特征向量.
+	
+	\textbf{注意}:$nI$只和自己相似
+	
+	\textbf{若尔当型}
+	
+	每一个方阵$A$都相似于一个若尔当型矩阵$J$,$J=\left[\begin{array}{ccc}
+		J_{1}&\ &\ \\\ &J_{i}&\ \\\ &\ &J_{j}  
+	\end{array}\right]$,$blocks=N(vectors)$,
+	\chapter{奇异值分解}
+	我们在特征值那一章中知道一些方阵可以进行对角化处理进而进行分解,那么不是方针的矩阵是否能进行分解呢?
+	
+	其实答案是肯定的,假设矩阵是$m*n$型矩阵,那么矩阵$A$可以分解为$A=U\sum V^{T}$,其中矩阵$U(m*m)$是矩阵$A$列空间和左零空间的标准正交基的并;矩阵$V(n*n)$是矩阵$A$行空间和零空间的标准正交基的并;$\sum(m*n)$是除了主对角线上的元素外全为0,主对角线上的元素为奇异值.
+	
+	我们换一个背景来理解,假设矩阵行空间内有一组正交基$v_{i}$,列空间内有一组正交基$u_{i}$,这两组正交基很特殊,满足:$$\left\{\begin{array}{c}
+		Av_{1}=\sigma_{1}u_{1}\\Av_{2}=\sigma_{2}u_{2}\\......
+	\end{array}\right.\Rightarrow AV=U\sum,\sum=diag(\lambda_{1},\lambda_{2}...\lambda_{n})$$
+	矩阵$U=\left[\begin{array}{ccccccc}
+		u_{1}&u_{2}&...&u_{r}&u_{r+1}&...&u_{n}
+	\end{array}\right],V=\left[\begin{array}{ccccccc}
+	v_{1}&v_{2}&...&v_{r}&v_{r+1}&...&v_{n}
+\end{array}\right]$,$rank(A)=r$,后面的是零空间和左零空间的基.我们来看一下如何解决这个问题,首先$AV=U\sum\Rightarrow A=U\sum V^{-1}=U\sum V^{T}$,我们根据实数对称矩阵的性质,我们有以下的公式:
+\begin{equation}
+	\left\{\begin{array}{c}
+		AA^{T}=U\sum V^{T}V\sum^{T}U^{T}\\A^{T}A=V\sum^{T}U^{T}U\sum V^{T}
+	\end{array}\right.\Rightarrow 	\left\{\begin{array}{c}
+	AA^{T}=U\sum \sum^{T}U^{T}\\A^{T}A=V\sum^{T}\sum V^{T}
+\end{array}\right.
+\end{equation}
+$\sum^{T}\sum=\sum\sum^{T}=diag(\lambda_{1}^{2},\lambda_{2}^{2}...\lambda_{n}^{2})$,我们知道对称矩阵$AA^{T}$和矩阵$A^{T}A$都可以对角化,那么对于$(28.1)$两式中$\sigma_{i}=\sqrt{\lambda_{i}}$,\ $U,V$分别是两个对阵矩阵的特征向量矩阵.
+
+我们来看几个例子:
+
+1.$A=\left[\begin{array}{cc}
+	4&4\\-3&3
+\end{array}\right]$,将矩阵$A$进行奇异值分解.
+	
+	2.$A=\left[\begin{array}{cc}
+		4&3\\8&6
+	\end{array}\right]$,将矩阵$A$进行奇异值分解.
+	\chapter{线性变换及对应矩阵}
+	矩阵来源于线性变化,我们先来看几个例子:
+	$T:R^{n}\rightarrow R^{n}$
+	
+	1.投影
+	
+	2.旋转
+	
+	3.平移不是一个线性变化
+	
+	\textbf{线性变换规则}
+	$$\left\{\begin{array}{c}
+		T(v+w)=T(v)+T(w)\\T(cv)=cT(v)
+	\end{array}\right.\Rightarrow T(cv+dw)=cT(v)+dT(w)$$满足以上规则的变换都属于线性变换;理解线性变换的根本就是找出背后的矩阵.上面我们仅仅理解的是单个向量线性变换的结果,我们接下来看所有向量(线性空间)的线性变换情况.
+
+	假设空间中存在一组基$v_{1},v_{2},...v_{n}$,空间中任意一个向量$k$可以写作为$k=c_{1}v_{1}+c_{2}v_{2}+...c_{k}v_{k}$,我们将$(c_{1},c_{2},...c_{n})$成为向量$k$的坐标值,存在唯一的表达式,影响坐标值的只有向量空间的基的选取.
+	
+	我们用一个矩阵$A$来表示一种线性变换:$T:R^{n}\rightarrow R^{n}$,即将$R^{n}$中的向量映射到空间$ R^{m} $中.我们需要两组基,第一组基用来确定映射前向量的坐标,第二组基用来确定映射后的向量的坐标.
+	
+	我们以投影为例,假设在一个平面上的所有向量通过线性变换全部投影到平面上的一条直线上.
+	
+	1.我们选择平面的一组基为沿直线方向和垂直于直线方向的两个单位向量$v_{1}、v_{2}$,直线的基为$v_{1}$,我们需要将平面的一个任意一个向量$V=\left[\begin{array}{c}
+		c_{1}\\c_{2}
+	\end{array}\right]$通过线性变换$T$变为$W=\left[\begin{array}{c}
+	c_{1}\\0
+\end{array}\right]$,我们发现矩阵$A=\left[\begin{array}{cc}
+1&0\\0&0
+\end{array}\right]$满足$AV=W$.
+
+	2.我们选择标准正交向量作为输入空间和输出空间的一组基,假设直线的倾斜角为$\frac{\pi}{4}$
+	,我们用平面的标准正交基$v_{1}=\left[\begin{array}{c}
+		1\\0
+	\end{array}\right],v_{2}=\left[\begin{array}{c}
+	0\\1
+\end{array}\right]$,我们在前面知道投影矩阵$P=\frac{aa^{T}}{a^{T}a}$,其中$a$是直线上的任意向量,在这里不妨令$a=\left[\begin{array}{c}
+1\\1
+\end{array}\right]$,$P=\left[\begin{array}{cc}
+\frac{1}{2}&\frac{1}{2}\\\frac{1}{2}&\frac{1}{2}
+\end{array}\right]$,对于平面上的向量,在以标准正交基作为基底时,通过线性变换可以使其变换为直线上的向量:$PV=W$.
+
+接下来的工作就是如何找到线性变换的矩阵$A$?
+
+假设输入空间为$R^{n}$的一组基为$v_{1},v_{2},...v_{n}$,输出空间为$R^{m}$的一组基为$w_{1},w_{2},...w_{m}$,假设将$R^{n}$中的基线性变换到$R^{m}$中,我们有下面的公式:
+\begin{equation}
+	\left\{\begin{array}{c}
+		Av_{1}=a_{11}w_{1}+a_{12}w_{2}+...+a_{1m}w_{m}\\Av_{2}=a_{21}w_{1}+a_{22}w_{2}+...+a_{2m}w_{m}\\......\\Av_{n}=a_{n1}w_{1}+a_{n2}w_{2}+...+a_{nm}w_{m}
+	\end{array}\right.
+\end{equation}
+我们知道$a_{ij}$时输出空间内向量的坐标,针对输入空间的一组基,其坐标为$\left[\begin{array}{c}
+	1\\0\\0\\...\\0
+\end{array}\right],\left[\begin{array}{c}
+0\\1\\0\\...\\0
+\end{array}\right],...\left[\begin{array}{c}
+0\\0\\0\\...\\1
+\end{array}\right]$,那么矩阵$A=\left[\begin{array}{cccc}
+a_{11}&a_{12}&...&a_{1n}\\a_{21}&a_{22}&...&a_{2n}\\...&...&...&...\\a_{m1}&a_{m2}&...&a_{mn}
+\end{array}\right]$对于输入向量空间中的基的线性变换都成立,对于输入空间中任意一个向量$x=c_{1}v_{1}+c_{2}v_{2}+...+c_{n}v_{n}$,根据线性变换的规则:$$T(x)=c_{1}T(v_{1})+c_{2}T(v_{2})+...+c_{n}T(v_{n})=c_{1}Av_{1}+c_{2}Av_{2}+...+c_{n}Av_{n}=A(c_{1}v_{1}+c_{2}v_{2}+...c_{n}v_{n})=Ax$$
+因此对于输入空间中任意向量矩阵$A$都满足,我们找到了求矩阵$A$的方法.
+
+
+	\textbf{特殊的线性变换}
+	幂函数求导:
+	
+	假设$f(x)=c_{0}+c_{1}x+c_{2}x^{2}+...+c_{n}x^{n}$,我们该如何求$f(x)$的导数？
+	
+	我们不难发现其实这也是一个映射的问题,将一个空间内的向量映射到另一个空间,我们是要将$R^{n}$空间通过线性变换得到$R^{n-1}$空间的向量;其中输入空间的一组基$\left\lbrace 1,x,x^{2}...,x^{n} \right\rbrace$,输出空间的一组基$\left\lbrace 1,2x,3x^{2}...,nx^{n-1}\right\rbrace $,我们直接能够得到输入向量的坐标$V$,我们能够找到$A$,使得$AX=U$,$U$是线性变换后的向量.
+	
+	举个简单的例子:$f(x)=2+x+3x^{2}+4x^{3}+3x^{4}$,那么$\frac{df(x)}{dx}=AX,X=\left[\begin{array}{c}
+		2\\1\\3\\4\\3
+	\end{array}\right]$,又因为$\frac{df(x)}{dx}=\left[\begin{array}{c}
+	1\\6\\12\\12
+\end{array}\right]$,所以$A=\left[\begin{array}{ccccc}
+0&1&0&0&0\\0&0&2&0&0\\0&0&0&3&0\\0&0&0&0&4
+\end{array}\right]$.
+
+我们进一步推广,当$f(x)=c_{0}+c_{1}x+c_{2}x^{2}+...+c_{n}x^{n}$时,$A=\left[\begin{array}{ccccc}
+	0&1&0&...&0\\0&0&2&...&0\\...&...&...&...&...\\0&0&0&...&n-1
+\end{array}\right]$,$A$是$(n-1)*n$型矩阵.
+	\chapter{基变换和图像压缩}
+	\textbf{矩阵和线性变换的关系}
+	
+	1.线性变换不一定需要坐标.
+	
+	2.矩阵是用坐标来表示线性变换.
+	
+	\textbf{图像压缩原理}
+	
+	图像是由一个个像素点构成的,像素点中有表示$0~255$的数字,灰白图像每个像素点只有一个分量,而彩色像素点有三个分量.比如我们有一张$512*512$像素的照片,我们可以得到一个向量$x\in \ R^{512^{2}}$,我们压缩图像的关键就是将相似灰度值的像素合在一起,整体的样子没有太大变化,但是清晰度降低.我们需要找到一组很好的基,来表示出图像的信息并且将少量的信息舍去.在图像处理中,常见的是将矩阵分为$8*8$的矩阵,采用$8$阶傅里叶矩阵的列向量作为一组基,$F_{8}=\left[\begin{array}{ccccc}
+		1&1&1&...&1\\1&w&w^{2}&...&w^{7}\\1&w^{2}&w^{4}&...&w^{14}\\...&...&...&...&...\\1&w^{7}&w^{14}&...&w^{49}
+	\end{array}\right],\ w^{8}=1$,我们通过基变换得到新的向量坐标$c^{'}$,将向量中的小于某个标准的值都去掉(失真),这些部分对于图像还原后的影响较小.我们能通过$X_{i}=\sum c^{'}_{i}V_{i}$将其还原,不过精确性降低了.
+
+	除了傅里叶矩阵的列,人们还发现了另一种很好的基:小波基(FWT)$P=\left[\begin{array}{cccccccc}
+		1&1&1&0&1&0&0&0\\	1&1&1&0&-1&0&0&0\\
+		1&1&-1&0&0&1&0&0\\	1&1&-1&0&0&-1&0&0\\	1&-1&0&1&0&0&1&0\\	1&-1&0&1&0&0&-1&0\\	1&-1&0&-1&0&0&0&1\\	1&-1&0&-1&0&0&0&-1
+	\end{array}\right]$,我们发现矩阵$P$的列向量是正交的,这是一个很好的性质,我们比较压缩前的和压缩后的得到$X=PC\Rightarrow C=P^{-1}X\Rightarrow C=\sum P^{T}X$
+	
+	\textbf{基变换}
+	
+	简单来说就是已知两组基和两种线性变换;这两种线性变换分别对应的矩阵的关系.
+	
+	假设空间中有一组基$v_{1},v_{2},...v_{n}$和这组基对应的线性变换$A$;另外一组基$w_{1},w_{2},...w_{n}$和这组基对应的线性变换$B$,满足$A~B$$\Rightarrow B=M^{-1}AM$.
+	
+	第一组线性变换对于第一组的每一个基有:
+	$$\left\{\begin{array}{c}
+	T(v_{1})=a_{11}v_{1}+a_{12}v_{2}+...+a_{1n}v_{n}\\T(v_{2})=a_{21}v_{1}+a_{22}v_{2}+...+a_{2n}v_{n}\\...\\T(v_{n})=a_{n1}v_{1}+a_{n2}v_{2}+...+a_{nn}v_{n}
+\end{array}\right.\Rightarrow A=\left[\begin{array}{cccc}
+	a_{11}&a_{21}&...&a_{n1}\\a_{21}&a_{22}&...&a_{2n}\\...&...&...&...\\a_{n1}&a_{n2}&...&a_{nn}
+\end{array}\right]$$,对于第二组基,我们同样可以得到:	$$\left\{\begin{array}{c}
+T(w_{1})=c_{11}w_{1}+c_{12}w_{2}+...+c_{1n}w_{n}\\T(w_{2})=c_{21}w_{1}+c_{22}w_{2}+...+c_{2n}w_{n}\\...\\T(w_{n})=c_{n1}w_{1}+c_{n2}w_{2}+...+c_{nn}w_{n}
+\end{array}\right.\Rightarrow B=\left[\begin{array}{cccc}
+c_{11}&c_{21}&...&c_{n1}\\c_{21}&c_{22}&...&c_{2n}\\...&...&...&...\\c_{n1}&c_{n2}&...&c_{nn}
+\end{array}\right]$$
+
+我们进一步假设$v_{1},v_{2},...v_{n}$是特征向量时,我们有$T(v_{i})=\lambda_{i} v_{i}\Rightarrow A=diag\left\lbrace\lambda_{1},\lambda_{2},...\lambda_{n} \right\rbrace $
+	\chapter{左右逆和伪逆}
+	\textbf{m*n型矩阵;rank=r}
+	
+	1.(1)当矩阵可逆时:$AA^{-1}=A^{-1}A=I\Rightarrow m=n=r$
+	
+	1.(2)矩阵列满秩:$n=r,n<m;\ dim(N(A))=m-r$;矩阵$A^{T}A$是$n*n$型对称可逆矩阵,$rank(A^{T}A)=n$.我们将$(A^{T}A)^{-1}A^{T}$称为矩阵$A$的左逆.我们将左逆放在右边得到$A(A^{T}A)^{-1}A^{T}\Rightarrow P$是矩阵列空间的投影矩阵.
+	
+	1.(3)矩阵行满秩:$m=r,m<n;\ N(A)=\left\lbrace 0 \right\rbrace $.矩阵$AA^{T}$是$m*m$型对称可逆矩阵,$rank(AA^{T})=m$.我们将$A^{T}(AA^{T})^{-1}$称为矩阵$A$的右逆.我们将右逆放在左边得到$A^{T}(AA^{T})^{-1}A^{T}\Rightarrow P$是矩阵$A$行空间的投影矩阵
+	
+	2.矩阵满足$r<m;r<n$,我们根据1.(2)和1.(3)知道矩阵的$C(A)$、$R(A)$都是$r$维空间,且两个空间中的向量一一对应,对于$\forall \ x\in\ R(A),\ Ay\in C(A);\forall \ y\in\ R(A),\ Ay\in C(A);Ax\neq Ay$.既然两个空间一一对应,那么我们也有$\forall \ Ax\in\ C(A),\ y\in R(A);\forall \ Ay\in\ C(A),\ y\in R(A)\Rightarrow x=A^{+}(Ax)$,我们称$A^{+}$为矩阵$A$的伪逆.
+	
+	\textbf{伪逆}
+	
+	我们从奇异值分解开始:$A=U\sum V^{T},\sum=diag\left\lbrace\sigma_{1},\sigma_{2},...,\sigma_{r},...0 \right\rbrace $,$\sum^{+}\sum=\left[\begin{array}{cc}
+		I_{r}&0\\0&0
+	\end{array}\right],(n*n,rank(\sum)=r)$.
+
+首先$\sum^{+}=diag\left\lbrace\frac{1}{\sigma_{1}},\frac{1}{\sigma_{2}},...\frac{1}{\sigma_{r}},...0
+ \right\rbrace $,那么我们能够得出:$$A^{+}=(U\sum V^{T})^{+}\Rightarrow A^{+}=V \sum^{+} U^{T}$$
+ 
+ 这是为了解决最小二乘法中$AA^{T}$不可逆的情况,使用伪逆来解决这一问题.
+\end{document}
